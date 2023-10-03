@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p id="txt">
+    <p>
+
+        <script>
+
+            let biocenosis = [
+                ['M', 'M', 'G', 'H', 'H', 'R'],
+                ['M', 'M', 'G', 'H', 'H', 'G'],
+                ['P', 'G', 'M', 'H', 'H', 'G'],
+                ['G', 'R', 'M', 'H', 'G', 'G'],
+                ['R', 'R', 'H', 'H', 'G', 'P']
+            ];
+
+            function pandemic(x, y) {
+                if (biocenosis[x][y] == "M") {
+                    biocenosis[x][y].fontcolor("red");
+                    biocenosis[x][y] = "m";
+                    if (biocenosis[x - 1][y] == "M" || biocenosis[x - 1][y] == "H") {
+                        pandemic(x - 1, y);
+                    }
+                    if (biocenosis[x][y - 1] == "M" || biocenosis[x][y - 1] == "H") {
+                        pandemic(x, y - 1)
+                    }
+                    if (biocenosis[x + 1][y] == "M" || biocenosis[x + 1][y] == "H") {
+                        pandemic(x + 1, y)
+                    }
+                    if (biocenosis[x][y + 1] == "M" || biocenosis[x][y + 1] == "H") {
+                        pandemic(x, y + 1)
+                    }
+                }
+                return biocenosis;
+            }
+
+         
+            document.getElementById("txt").innerHTML = pandemic(1,1);
+           
+        </script>
+
+
+</body>
+
+</html>

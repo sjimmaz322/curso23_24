@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>OSO</title>
+
+</head>
+
+<body>
+    <p>ORIGINAL</p>
+    <p id="original"></p>
+    <p>RESUELTO</p>
+    <p id="txt">
+    <p>
+        <script>
+            let tablero = new Array();
+            let maxx = 9;
+            let maxy = 9;
+            let ori = "";
+            let imp = "";
+            function aleatorio(min, max) {
+                var horquilla = max - min;
+                return Math.round(Math.random() * horquilla + min);
+            }
+            function rellena() {
+                // aquí tendrás que rellenar la matriz.
+                for (let i = 0; i < maxx; i++) {
+                    //Llenamos el array tablero de arrrays para crear una matriz
+                    let linea = new Array();
+                    for (let j = 0; j < maxy; j++) {
+                        let rd = aleatorio(0, 2)//Da un número entre 0 y 2
+                        if (rd == 0 || rd == 1) {
+                            linea.push("O");
+                            ori += "O" + "&nbsp;&nbsp;&nbsp;&nbsp;";
+                        } else {
+                            linea.push("S");
+                            ori += "S" + "&nbsp;&nbsp;&nbsp;&nbsp;"
+                        }
+
+                    }
+                    ori += "</br>";
+                    tablero.push(linea);
+                }
+                document.getElementById("original").innerHTML = ori;
+            }
+            function resuelve() {
+                //función que resuelve el juego 
+                //Recorremos la matriz completa
+                for (let i = 0; i < tablero.length; i++) {
+
+                    for (let j = 0; j < tablero[i].length; j++) {
+                        let esUnaEse = false;
+                        //Controlar que no se salga
+                        //Si hay OSO horizontal borra las "O", pero no borra la S por si hay más posibilidades.
+                        if ((j - 1) >= 0 && (j + 1) < tablero.length) {//Miramos que no nos salgamos.
+                            if (tablero[i][j] == "S" && tablero[i][j - 1] == "O" && tablero[i][j + 1] == "O") {
+                                tablero[i][j - 1] = "X";
+                                tablero[i][j + 1] = "X";
+                                esUnaEse = true;
+                            }
+                        }
+                        //Mira si hay OSO vertical
+                        if ((i - 1) >= 0 && (i + 1) < tablero.length) {
+                            if (tablero[i][j] == "S" && tablero[i - 1][j] == "O" && tablero[i + 1][j] == "O") {
+                                tablero[i - 1][j] = "X";
+                                tablero[i + 1][j] = "X";
+                                esUnaEse = true;
+                            }
+                        }
+                        //Comprueba si hay OSO en las diagonales
+                        if ((i - 1) >= 0 && (i + 1) < tablero[i].length && (j - 1) >= 0 && (j + 1) < tablero.length) {
+                            if (tablero[i][j] == "S" && tablero[i - 1][j - 1] == "O" && tablero[i + 1][j + 1] == "O") {
+                                tablero[i - 1][j - 1] = "X";
+                                tablero[i + 1][j + 1] = "X";
+                                esUnaEse = true;
+                            }
+                            if (tablero[i][j] == "S" && tablero[i - 1][j + 1] == "O" && tablero[i + 1][j - 1] == "O") {
+                                tablero[i - 1][j + 1] = "X";
+                                tablero[i + 1][j - 1] = "X";
+                                esUnaEse = true;
+                            }
+                            //Al comprobar todas las posibilidades borra la "S"
+                            if (esUnaEse) {
+                                tablero[i][j] = "X";
+                            }
+
+                        }
+                        imp += tablero[i][j] + "&nbsp;&nbsp;&nbsp;&nbsp;";
+                    }
+                    imp += "</br>";
+                }
+                document.getElementById("txt").innerHTML = imp;
+            }
+            rellena();
+            console.log(JSON.parse(JSON.stringify(tablero)));
+            resuelve();
+            console.log(tablero);
+        </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!--
+Escriba una función recursiva que calcule y devuelva la suma de todos los elementos de un array
+sumatorio (tamaño).
+
+    -->
+</body>
+<script>
+
+    let arr = [1, 2, 3, 4, 5];
+
+    function sumarArray(pos) {
+        if (pos === 0) {
+            return 0;
+        } else {
+            return arr[pos - 1] + sumarArray(pos - 1)
+        }
+
+    }
+    console.log("El sumatorio es: " + sumarArray(arr.length));
+
+</script>
+
+</html>

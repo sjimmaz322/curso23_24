@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let numeros = [1, [2, 3, 4], [8, 15, [5, 1]], 27];
+        console.log(numeros);
+
+        // ESCRIBE TU CÓDIGO AQUÍ
+        const Buscador = (arr, num) => {
+            let contador = 0;
+            for (let i = 0; i < arr.length; i++) {
+                if (Array.isArray(arr[i])) {
+                    contador += Buscador(arr[i], num);
+
+                } else {
+                    if (arr[i] === num) {
+                        contador++;
+                    }
+
+                }
+
+            }
+            return contador;
+        }
+        //Imprimimos el resultado por consola
+        //var resultado = "El resultado es: " + buscador(numeros, 1);
+        console.log(Buscador(numeros, 1));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Elije sabiamente</h1>
+    <button type="button" onclick="clickEsp()">ESPAÑOL</button>
+    <button type="button" onclick="clickEng()">INGLÉS</button>
+    <button type="button"onclick="clickRus()">RUSO</button>
+    <p id="mensaje"></p>
+</body>
+<script>
+    function clickEsp(){
+        document.getElementById('mensaje').innerHTML = '¿Qué tal?';
+        document.getElementById('mensaje').style.color ="blue";
+    }
+    function clickEng(){
+        document.getElementById('mensaje').innerHTML = 'Hello there';
+        document.getElementById('mensaje').style.color ="green";
+    }
+    function clickRus(){
+        document.getElementById('mensaje').innerHTML = 'привет';
+        document.getElementById('mensaje').style.color ="red";
+    }
+</script> 
+</html>

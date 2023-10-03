@@ -1,0 +1,25 @@
+<html>
+<head>
+<title>ARRAY VAMPIRO</title>
+</head>
+<body>
+<h1>ARRAY VAMPIRO</h1>
+<script>
+let arr=[1,2,3,4,5,6,5,4,3,2,1];
+/*INCLUYE TU CÓDIGO AQUÍ*/
+function vampus(pos,arr){
+for ( i = pos; i < arr.length; i++) {
+            if (arr[i] != arr[(arr.length - 1) - i]) {
+                return false;
+                break;
+            } else {
+                return true;
+            }
+
+        }
+    }
+
+console.log(vampus(0,arr)?"Es un número vampiro":"No es un número vampiro");
+</script>
+</body>
+</html>

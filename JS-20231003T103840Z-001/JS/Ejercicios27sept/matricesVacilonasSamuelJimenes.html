@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrices Vacilonas</title>
+</head>
+
+<body>
+    <h1>Matrices Vacilonas</h1>
+    <input type="number" id="numero" min="1" max="10" value="5"></input>
+    <p id="parrafo"></p>
+    <input type="button" onclick="dale()" value="Dale"></input>
+
+    <script>
+        const dale = () => {
+            let matriz=[];
+            let filas = document.getElementById("numero").value;
+            //console.log(filas);
+            let texto = "";
+
+            for (let i = 0; i < filas; i++) {
+                let arr=[];
+                let linea = "";
+                for (let j = 0; j < filas; j++) {
+                    linea += elemento(i, j) + "&nbsp;";
+                    arr.push(elemento(i,j));
+                }
+                texto += linea + "</br>";
+                matriz.push(arr);
+            }
+            let parrafo = document.getElementById("parrafo").innerHTML = texto;
+            console.log(matriz);
+        }
+        const elemento = (f, c) => {
+            if (f == 0) return 1;
+            if (c == 0) return 1;
+            return elemento(f - 1, c) + elemento(f, c - 1);
+
+        }
+        /*
+        let arr = [];
+
+
+        function crearMatriz(a) {
+            for (let i = 0; i < a; i++) {
+
+                arr[i] = [];
+
+            }
+            return arr;
+
+        }
+        function rellenarMatriz(array) {
+            for (let i = 0; i < array.length; i++) {
+                for (let j = 0; j < array.length; j++) {
+                    if (i == 0 || j == 0) {
+                        array[i][j] = 1;
+                    } else {
+                        array[i][j] = array[i][j - 1] + array[i - 1][j];
+                    }
+                }
+
+            }
+            return array;
+        }
+
+        console.log(rellenarMatriz(crearMatriz(3)));
+        */
+    </script>
+</body>
+
+</html>

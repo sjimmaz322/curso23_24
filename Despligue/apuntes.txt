@@ -1,0 +1,77 @@
+rpiealb29@maralboran.es
+//---
+Redes en la subred 1
+192.168.10.50 -  10101100.00010010.01000111.0-0110010
+192.168.10.100 - 10101100.00010010.01000111.0-1100100
+//---
+Redes en la subred 2
+192.168.10.129 - 10101100.00010010.01000111.1-0000001
+192.168.10.192 - 10101100.00010010.01000111.1-1000000 
+//---***---EJERCICIO PARA CLASE ---***---
+Creamos 9 subredes
+172.18.71.2/24
+Para hacer 9 subredes necesitamos 2^x, siendo x 4, ya que 2³ = 8 y 2⁴ = 16, tendríamos nueve redes y 7 más de respaldo.
+2^x >= numredes;
+2³ >= 9;// false
+2⁴ >= 9;// true
+172.18.71.2/28
+
+Misma dirección IP
+10101100.00010010.01000111.00000000
+Nueva máscara de subred
+11111111.11111111.11111111.11110000
+Las subredes irían con el rango de 256/16 = 16.
+Así que las direcciones serían: (Recordando que la primera y la última pertenecen a la dirección de red y broadcast respectivamente, no son host)
+0- 172.18.71.0   a 172.18.71.15
+1- 172.18.71.16  a 172.18.71.31
+2- 172.18.71.32  a 172.18.71.47
+3- 172.18.71.48  a 172.18.71.63
+4- 172.18.71.64  a 172.18.71.79
+5- 172.18.71.80  a 172.18.71.95
+6- 172.18.71.96	 a 172.18.71.111
+7- 172.18.71.112 a 172.18.71.127
+8- 172.18.71.128 a 172.18.71.143
+-- A partir de aquí no necesitamos más redes pero las tenemos que tener igualmente.
+9- 172.18.71.144 a 172.18.71.159
+10- 172.18.71.160 a 172.18.71.175
+11- 172.18.71.176 a 172.18.71.191
+12- 172.18.71.192 a 172.18.71.207
+13- 172.18.71.208 a 172.18.71.223
+14- 172.18.71.224 a 172.18.71.239
+15- 172.18.71.240 a 172.18.71.255
+//---***---
+//---***---
+E1: 192.168.5.128/26
+E2: 192.168.5.130/26
+E3: 192.168.5.200/26
+E4: 192.168.5.3/26
+E5:192.168.5.64/26
+//---
+Para las direcciones usadas cogemos 2 bits extras, por lo tanto tendremos 2² subredes.
+Siguiendo el truco el rango sería 256/4 = 64, dando el siguiente rango
+Subred 1: 192.168.5.0 a 192.168.5.63 -> Equipo 4
+Subred 2: 192.168.5.64 a 192.168.5.127 -> Equipo 5
+Subred 3: 192.168.5.128 a 192.168.5.191 -> Equipo 1 y 2
+Subred 4: 192.168.5.192 a 192.168.5.255 -> Equipo 3
+//---***---
+192.168.4.0/24
+255.255.255.0
+
+Queremos hacer 6 subredes.
+Calcula la máscara de subred
+Calcula la dirección de red y broadcast de la red 3.
+Cuantos host tenemos por subred.
+
+Para hacer 6 subredes necesitamos 2^x >= 6, así que x = 3, necesitamos 3 bits, quedando la máscara de subred:
+255.255.255.224 => 11111111.11111111.11111111.11100000
+
+El rango sería 256/(2³) = 32.
+
+Subred 0 -> 192.168.4.0 a 192.168.4.31
+Subred 1 -> 192.168.4.32 a 192.168.4.63
+Subred 2 -> 192.168.4.64 a 192.168.4.95
+Subred 3 -> 192.168.4.96 a 192.168.4.127
+//--
+La dirección de red de la subred 3 sería 192.168.4.96 y la de broadcas sería 192.168.4.127
+//--
+Por cada subred podríamos conectar 2⁵-2 dispositivos, o sea 30.

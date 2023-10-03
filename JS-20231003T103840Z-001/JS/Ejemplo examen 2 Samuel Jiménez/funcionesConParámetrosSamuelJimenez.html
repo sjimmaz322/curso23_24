@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    /*
+    Realiza una función que tome uno, dos o tres parámetros.
+Si le introduzco solo un parámetro hará el cubo, si le introduzco dos, hará la multiplicación de ambos parámetros y si le introduzco tres la suma de ambos.
+Pon ejemplos de su uso.
+calcula(5); calcula(5,5); calcula(5,5,5);
+    */
+    function jugandoConNumeros(a, b, c) {
+        if (b == undefined && c == undefined) {
+            console.log(Math.pow(a, 3));
+        } else if (c == undefined) {
+            console.log(a * b);
+        } else {
+            console.log(a + b + c);
+        }
+    }
+
+    jugandoConNumeros(3);
+    jugandoConNumeros(3, 2);
+    jugandoConNumeros(3, 2, 4)
+</script>
+
+</html>
