@@ -1,0 +1,47 @@
+<!--
+Realiza una función flecha llamada FindMyGuy que busque una persona en un array de
+nombres.
+Tu función no puede usar los bucles for, foreach o cualquier otro que haga un recorrido
+secuencial del array.
+Importante: prohibido el acceso secuencial a los distintos elementos del array.
+Tu función deberá devolver cuántas veces aparece el nombre a buscar (un número entero).
+Lo más eficiente es que hagas una función recursiva.
+Deberá funcionar para cualquier array.
+-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>RECURSIVIDAD</title>
+</head>
+
+<body>
+    <script>
+        let people = ["perico", "juanico",
+            "andres", "dimas", "gestas", "zarco", "maimonides",
+            "elias", "jeremias", "dimas", "dimas", "gestas"];
+        console.log(people)
+        // ESCRIBE TU CÓDIGO AQUÍ
+        var veces = 0;
+        function FindMyGuy(arr, nombre, pos) {
+
+            if (pos < arr.lenght) {
+                if (arr[pos] != nombre) {
+                    FindMyGuy(arr, nombre, pos + 1);
+                } else {
+                    veces += FindMyGuy(arr, nombre, pos + 1);
+
+                }
+
+            }
+            return veces;
+
+
+        }
+        //  console.log(people.length);
+        console.log(FindMyGuy(people, "perico", 0));
+    </script>
+</body>
+
+</html>
