@@ -23,6 +23,17 @@ Deberá funcionar para cualquier array.
             "elias", "jeremias", "dimas", "dimas", "gestas"];
         console.log(people)
         // ESCRIBE TU CÓDIGO AQUÍ
+        const FindMyGuy = (array, pos, guy) => {
+            let c = 0;
+            //Si llega al final devuelve 0
+            if (array.length === pos) return 0;
+            //Si encuentra uno de los buscados suma uno a c
+            if (array[pos] === guy) c++;
+            //En cualquier caso ve al siguiente
+            return c + FindMyGuy(array, pos + 1, guy);
+        }
+        console.log(FindMyGuy(people, 0, "dimas"));
+        /*
         var veces = 0;
         function FindMyGuy(arr, nombre, pos) {
 
@@ -36,11 +47,10 @@ Deberá funcionar para cualquier array.
 
             }
             return veces;
-
-
         }
         //  console.log(people.length);
         console.log(FindMyGuy(people, "perico", 0));
+        */
     </script>
 </body>
 
