@@ -18,6 +18,7 @@
     <!-- <form action="index.php" method="get" enctype="multipart/form-data">-->
     <form action="index.php" method="post" enctype="multipart/form-data">
         <h2>Rellena tu CV</h2>
+
         <p>
             <label for="name">Nombre:</label></br>
             <input id="name" type=text name="nombre" value="<?php if (isset($_POST["nombre"])) echo $_POST['nombre']; ?>" />
@@ -50,6 +51,23 @@
         </p>
         <!---->
         <p>
+            <label for="dni">DNI:</label></br>
+            <input id="dni" type=text name="dni" placeholder="DNI" value="<?php if (isset($_POST["dni"])) echo $_POST["dni"] ?>" />
+            <?php
+            if (isset($_POST["btnGuardar"]) && $error_dni) {
+
+                if ($_POST["dni"] == "") {
+                    echo "<span> * El campo DNI no puede estar vacío *</span>";
+                } else if (!dni_bien_escrito(strtoupper($_POST["dni"]))) {
+                    echo "<span>* El DNI no está bien escrito *</span>";
+                } else {
+                    echo "<span>* El DNI no es válido *</span>";
+                }
+            }
+            ?>
+        </p>
+        <!---->
+        <p>
         <p>Sexo <?php
                 if (isset($_POST["btnGuardar"]) && $error_sexo) {
                     echo "<span class='error'>El sexo es obligatorio</span>";
@@ -68,8 +86,8 @@
         <p>
             <label for="nacido">Nacido en: </label>
             <select name="nacido" id="nacido">
-                <option value="Cordoba" <?php if (!isset($_POST["nacido"]) && $_POST["nacido"] == "Cordoba") echo "selected"; ?> >Córdoba</option>
-                <option value="Malaga" <?php if (!isset($_POST["nacido"]) && $_POST["nacido"] == "Malaga") echo "selected"; ?> >Málaga</option>
+                <option value="Cordoba" <?php if (!isset($_POST["nacido"]) && $_POST["nacido"] == "Cordoba") echo "selected"; ?>>Córdoba</option>
+                <option value="Malaga" <?php if (!isset($_POST["nacido"]) && $_POST["nacido"] == "Malaga") echo "selected"; ?>>Málaga</option>
                 <option value="Granada" <?php if (!isset($_POST["nacido"]) || (!isset($_POST["nacido"]) && $_POST["nacido"] == "Granada")) echo "selected"; ?>>Granada</option>
             </select>
         </p>

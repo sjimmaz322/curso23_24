@@ -59,56 +59,14 @@ if (isset($_POST["btnConvertir"])) {
     <div class="div2">
         <?php
         if (isset($_POST["btnConvertir"]) && !$error_form) {
-            $positions = [];
-            $res = "";
-            for ($i = 0; $i < strlen($num) - 1; $i++) {
-                $positions[$i] = $num[$i];
+            $num = $_POST["numero"];
+            $arr = array();
+            for ($i = 0; $i < strlen($num); $i++) {
             }
-            switch (count($positions)) {
-                case 1:
-                    switch ($positions[0]) {
-                        case "1":
-                            $res = "I";
-                            break;
-                        case 2:
-                            $res = "II";
-                            break;
-                        case 3:
-                            $res = "III";
-                            break;
-                        case 4:
-                            $res = "IV";
-                            break;
-                        case 5:
-                            $res = "V";
-                            break;
-                        case 6:
-                            $res = "VI";
-                            break;
-                        case 7:
-                            $res = "VII";
-                            break;
-                        case 8:
-                            $res = "VIII";
-                            break;
-                        case 9:
-                            $res = "IX";
-                            break;
-                        case 10:
-                            $res = "X";
-                            break;
-                    }
-                    break;
-                case 2:
-                    # code...
-                    break;
-                case 3:
-                    # code...
-                    break;
-                case 4:
-                    # code...
-                    break;
-            }
+
+
+
+
             echo "<p>El resultado es: " . $res . "</p>";
         }
         ?>
