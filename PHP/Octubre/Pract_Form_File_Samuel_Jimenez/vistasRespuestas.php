@@ -17,7 +17,7 @@
         }
 
         .tam_imagen {
-            height: 40%;
+            height: 40%;       
         }
     </style>
 </head>
@@ -27,13 +27,10 @@
     <!-- Meto código php en el html -->
     <?php
     echo "<p><strong>Nombre: </strong>" . $_POST["nombre"] . "</p>";
-    echo "<p><strong>Apellidos: </strong>" . $_POST["ape"] . "</p>";
+    echo "<p><strong>Usuario: </strong>" . $_POST["user"] . "</p>";
     echo "<p><strong>Contraseña: </strong>" . $_POST["con"] . "</p>";
 
     echo "<p><strong>Sexo: </strong>" . $_POST["sex"] . "</p>";
-
-    echo "<p><strong>Nacido en: </strong>" . $_POST["nacido"] . "</p>";
-    echo "<p><strong>Comentarios: </strong>" . $_POST["comment"] . "</p>";
 
     if (isset($_POST["suscripcion"])) {
         echo "<p><strong>Subscripción: </strong>" . $_POST["suscripcion"] . "</p>";

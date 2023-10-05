@@ -21,7 +21,7 @@
 
         <p>
             <label for="name">Nombre:</label></br>
-            <input id="name" type=text name="nombre" value="<?php if (isset($_POST["nombre"])) echo $_POST['nombre']; ?>" />
+            <input id="name" type=text name="nombre" placeholder="Nombre..." value="<?php if (isset($_POST["nombre"])) echo $_POST['nombre']; ?>" />
             <?php
             if (isset($_POST["btnGuardar"]) && $error_nombre) {
                 echo "<span class='error'>El campo nombre es obligatorio</span>";
@@ -30,19 +30,19 @@
         </p>
         <!---->
         <p>
-            <label for="ape">Apellidos:</label></br>
+            <label for="user">Usuario:</label></br>
 
-            <input id="ape" type=text size=40 name="ape" value="<?php if (isset($_POST["ape"])) echo $_POST['ape']; ?>" />
+            <input id="user" type=text name="user" placeholder="Usuario..." value="<?php if (isset($_POST["user"])) echo $_POST['user']; ?>" />
             <?php
-            if (isset($_POST["btnGuardar"]) && $error_ape) {
-                echo "<span class='error'>El campo apellido es obligatorio</span>";
+            if (isset($_POST["btnGuardar"]) && $error_user) {
+                echo "<span class='error'>El campo usuario es obligatorio</span>";
             }
             ?>
         </p>
         <!---->
         <p>
             <label for="con">Contraseña:</label></br>
-            <input id="con" type=password name="con" />
+            <input id="con" type=password name="con" placeholder="Contraseña..."/>
             <?php
             if (isset($_POST["btnGuardar"]) && $error_con) {
                 echo "<span class='error'>El campo contraseña es obligatorio</span>";
@@ -52,16 +52,16 @@
         <!---->
         <p>
             <label for="dni">DNI:</label></br>
-            <input id="dni" type=text name="dni" placeholder="DNI" value="<?php if (isset($_POST["dni"])) echo $_POST["dni"] ?>" />
+            <input id="dni" type=text name="dni" placeholder="DNI:11223344Z" value="<?php if (isset($_POST["dni"])) echo $_POST["dni"] ?>" />
             <?php
             if (isset($_POST["btnGuardar"]) && $error_dni) {
 
                 if ($_POST["dni"] == "") {
-                    echo "<span> * El campo DNI no puede estar vacío *</span>";
+                    echo "<span class='error'> * El campo DNI no puede estar vacío *</span>";
                 } else if (!dni_bien_escrito(strtoupper($_POST["dni"]))) {
-                    echo "<span>* El DNI no está bien escrito *</span>";
+                    echo "<span class='error'>* El DNI no está bien escrito *</span>";
                 } else {
-                    echo "<span>* El DNI no es válido *</span>";
+                    echo "<span class='error'>* El DNI no es válido *</span>";
                 }
             }
             ?>
@@ -80,7 +80,7 @@
         </p>
         <!---->
         <p>
-            <label for="foto">Incluir mi foto: </label>
+            <label for="foto">Incluir mi foto (Archivo de tipo imagen. Max 500KB): </label>
             <input type="file" name="foto" id="foto" accept="image/*" />
             <!--
                 Cuando se haya seleccionado y pasen !cositas
@@ -89,31 +89,13 @@
             if (isset($_POST["btnGuardar"]) && $error_archivo) {
                 if ($_FILES["foto"]["name"] != "") {
                     if (!getimagesize($_FILES["foto"]["tmp_name"])) {
-                        echo "<span> * La foto seleccionado no es una imagen * </span>";
+                        echo "<span class='error'> * La foto seleccionado no es una imagen * </span>";
                     } else if ($_FILES["foto"]["error"]) {
-                        echo "<span> * No se ha podido subir el foto al servidor * </span>";
+                        echo "<span class='error'> * No se ha podido subir el foto al servidor * </span>";
                     } else {
-                        echo "<span> * La foto es demasiado grande * </span>";
+                        echo "<span class='error'> * La foto es demasiado grande * </span>";
                     }
                 }
-            }
-            ?>
-        </p>
-        <!---->
-        <p>
-            <label for="nacido">Nacido en: </label>
-            <select name="nacido" id="nacido">
-                <option value="Cordoba" <?php if (!isset($_POST["nacido"]) || (!isset($_POST["nacido"]) && $_POST["nacido"] == "Córdoba")) echo "selected";  ?>>Córdoba</option>
-                <option value="Malaga" <?php if (!isset($_POST["nacido"]) || (!isset($_POST["nacido"]) && $_POST["nacido"] == "Málaga")) echo "selected";  ?>>Málaga</option>
-                <option value="Granada" <?php if (!isset($_POST["nacido"]) || (!isset($_POST["nacido"]) && $_POST["nacido"] == "Granada")) echo "selected"; ?>>Granada</option>
-            </select>
-        </p>
-        <!---->
-        <p>
-            <label for="comment">Comentarios:</label><textarea name="comment" id="comment" rows=7 cols=30></textarea>
-            <?php
-            if (isset($_POST["btnGuardar"]) && $error_comentario) {
-                echo "<span class='error'>El campo comentario es obligatorio</span>";
             }
             ?>
         </p>
