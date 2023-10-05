@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teoria subir Fichero</title>
+    <title>Recogida de datos</title>
     <style>
         td,
         th,
@@ -23,26 +23,42 @@
 </head>
 
 <body>
-    <h1>Teoría subir ficheros al servidor.</h1>
-    <h2>Información de la imagen enviada.</h2>
+    <h1>Aquí recogemos los datos</h1>
+    <!-- Meto código php en el html -->
     <?php
+    echo "<p><strong>Nombre: </strong>" . $_POST["nombre"] . "</p>";
+    echo "<p><strong>Apellidos: </strong>" . $_POST["ape"] . "</p>";
+    echo "<p><strong>Contraseña: </strong>" . $_POST["con"] . "</p>";
+
+    echo "<p><strong>Sexo: </strong>" . $_POST["sex"] . "</p>";
+
+    echo "<p><strong>Nacido en: </strong>" . $_POST["nacido"] . "</p>";
+    echo "<p><strong>Comentarios: </strong>" . $_POST["comment"] . "</p>";
+
+    if (isset($_POST["suscripcion"])) {
+        echo "<p><strong>Subscripción: </strong>" . $_POST["suscripcion"] . "</p>";
+    } else {
+        echo "<p><strong>Subscripción: </strong>" . "off" . "</p>";
+    }
+
+    echo "<h3>Datos de la imagen subida: </h3>";
     //Para darle nombre numérico único
     $nombre_nuevo = md5(uniqid(uniqid(), true));
     //Añadiendo la extensión que tiene
-    $array_nombre = explode(".", $_FILES["archivo"]["name"]);
+    $array_nombre = explode(".", $_FILES["foto"]["name"]);
     $ext = "";
     if (count($array_nombre) > 1) {
         $ext = "." . end($array_nombre);
     }
     $nombre_nuevo .= $ext;
     //Movemos a la carpeta de imágenes
-    @$var = move_uploaded_file($_FILES["archivo"]["tmp_name"], "img/" . $nombre_nuevo);
+    @$var = move_uploaded_file($_FILES["foto"]["tmp_name"], "img/" . $nombre_nuevo);
     if ($var) {
 
         echo "<p>";
         echo "<table>";
 
-        foreach ($_FILES["archivo"] as $key => $value) {
+        foreach ($_FILES["foto"] as $key => $value) {
             echo "<tr>";
             echo "<th>" . $key . "</th>";
             echo "<td>" . $value . "</td>";
@@ -52,13 +68,14 @@
 
         echo "</table>";
         echo "</p>";
- 
+
         echo "<h3>La imagen subida es:</h3>";
         echo "<p><img class='tam_image' src='img/" . $nombre_nuevo . "' alt='Foto' title='Foto' /></p>";
     } else {
         echo "<p> * No se ha podido subir mover la imagen a la carpeta destino en el servidor. * </p>";
     }
     ?>
+    <!-- Cierro el php y termino el html -->
 </body>
 
 </html>

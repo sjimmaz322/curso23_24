@@ -5,6 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teoría subir fichero al server</title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
 </head>
 
 <body>
@@ -16,11 +21,13 @@
             <?php
             if (isset($_POST["btnEnviar"]) && $error_archivo) {
                 if ($_FILES["archivo"]["name"] != "") {
-                    echo "<span> * No has seleccionado ningún archivo *</span>";
+
                     if ($_FILES["archivo"]["error"]) {
-                        echo "<span> * No se ha podido subir el archivo al servidor *</span>";
+                        echo "<span class='error'> * No se ha podido subir el archivo al servidor *</span>";
+                    } else if (!getimagesize($_FILES["archivo"]["tmp_name"])) {
+                        echo "<span class='error'> * El archivo seleccionado no es una imagen *</span>";
                     } else {
-                        echo "<span> * El archivo es demasiado grande *</span>";
+                        echo "<span class='error'> * El archivo es demasiado grande *</span>";
                     }
                 }
             }
