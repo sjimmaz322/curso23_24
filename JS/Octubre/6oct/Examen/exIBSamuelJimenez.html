@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CAPICUA</title>
+</head>
+
+<body>
+    <p id="txt"></p>
+
+    <br><br>
+    Crea un programa con una función recursiva que muestre todos los
+    números/letras capicúas encontrados en un array. Se entiende por capicúa
+    cuando tiene al menos 3 posiciones del array.
+    Por ejemplo con el array: 5 4 6 5 6 4 3 O S O<br><br>
+    mostrará: <br>
+    656<br>
+    46564<br>
+    OSO
+    <p>
+    <p>Pista:
+
+        const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
+        console.log(animals.slice(2));
+        // expected output: Array ["camel", "duck", "elephant"]
+        console.log(animals.slice(2, 4));
+        // expected output: Array ["camel", "duck"]
+        console.log(animals.slice(2, 4).reverse());
+        // expected output: Array ["duck","camel"]
+    </p>
+    <script>
+        let arr =
+            ["5", "4", "6", "5", "6", "4", "3", "F", "O", "O", "O", "T", "O", "F", "O", "O", "R", "O", "O", "T", "O"];
+        // ESCRIBE TU CÓDIGO AQUÍ
+        let posI = 0, posF = 1;
+
+        //Mientras no se salga del array
+        while (posI < arr.length) {
+            let arrAux = [];
+            let arrAux2 = [];
+            let capi = false;
+
+            //Mientras no encuentre coincidencias
+            while (arr[posI] != arr[posF]) {
+                posF++;
+            }
+            //Cuando salga del bucle es que ha encontrado coincidencias
+            //Creo dos arrays para comprobar si son capicuas
+            arrAux = arr.slice(posI, posF + 1);
+            arrAux2 = JSON.parse(JSON.stringify(arrAux)).reverse();
+            console.log(arrAux);
+            console.log(arrAux2);
+            //Si la longitud del array es al menos de 3
+            if (arrAux.length >= 3) {
+                //Compruebo si son capicuas/palíndromos
+                for (let i = 0; i < arrAux.length; i++) {
+                    if (arrAux[i] != arrAux2[i]) {
+                        capi = false;
+
+                    }
+                    console.log(capi);
+
+                }
+            }
+            //Si capi es true es porque el array es capicua
+            if (capi == true) {
+                console.log(arrAux);
+            } else {
+                console.log("nope");
+            }
+            //Avanzamos una posición en el marcador inicial e igualamos ambos marcadores
+            posI++;
+            posF = posI;
+
+
+
+        }
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

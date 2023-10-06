@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CAPICUA</title>
+</head>
+
+<body>
+    <p id="txt"></p>
+
+    <br><br>
+    Crea un programa con una función recursiva que muestre todos los
+    números/letras capicúas encontrados en un array. Se entiende por capicúa
+    cuando tiene al menos 3 posiciones del array.
+    Por ejemplo con el array: 5 4 6 5 6 4 3 O S O<br><br>
+    mostrará: <br>
+    656<br>
+    46564<br>
+    OSO
+    <p>
+    <p>Pista:
+
+        const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
+        console.log(animals.slice(2));
+        // expected output: Array ["camel", "duck", "elephant"]
+        console.log(animals.slice(2, 4));
+        // expected output: Array ["camel", "duck"]
+        console.log(animals.slice(2, 4).reverse());
+        // expected output: Array ["duck","camel"]
+    </p>
+    <script>
+        let arr = ["5", "4", "6", "5", "6", "4", "3", "F", "O", "O", "O", "T", "O", "F", "O", "O", "R", "O", "O", "T", "O"];
+        // ESCRIBE TU CÓDIGO AQUÍ
+
+        const recur = (array, inicio, final) => {
+        
+
+        }
+        console.log(recur(arr, 0, arr.length - 1));
+    </script>
+</body>
+
+</html>
