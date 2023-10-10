@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apuntes 10 octubre</title>
+</head>
+
+<body>
+    <script>
+        let dias = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'];
+        let numeros = [1, 2, 3, 4, 5, 6, 7];
+        //
+        console.log(numeros.map((v) => v));
+        console.log(numeros.map((v, i) => v + i));//Siendo i la posición del elemento
+        console.log(numeros.map((v) => { return (v + v) }));
+        //Para hacer algo con todos los elementos usamos map
+        //Quiero un array que me devuelva todos los valores mayores que 5
+        //Map devuelve todos filter filtra según la condición dada
+        console.log(numeros.filter((v) => { return (v > 5) }));
+        //Dame uno (el primero) que sea mayor que 5
+        console.log(numeros.find((v) => { return (v > 5) }));
+        //Necesito los días de la semana cuya longitud sea mayor que 6
+        console.log(dias.filter((v) => (v.length > 6)));
+        console.log(dias.filter((v) => { return (v.length > 6) }));
+    </script>
+
+</body>
+
+</html>

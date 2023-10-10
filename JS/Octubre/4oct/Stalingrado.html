@@ -9,6 +9,7 @@
 
     <h1>STALINGRADO</h1>
     <p id="matriz"></p>
+    <p id="matriz2"></p>
     <h2 id="ganador"></h2>
 
     <script>
@@ -26,6 +27,8 @@
         //Ganan los rusos
         //Mostramos la matriz para ayuda visual
         let texto = "";
+        let texto2 = "";
+        let resultadoBatalla = JSON.parse((JSON.stringify(battlefield)));
         for (let i = 0; i < battlefield.length; i++) {
             for (let j = 0; j < battlefield[i].length; j++) {
                 if (battlefield[i][j] === "") battlefield[i][j] = " - ";
@@ -35,13 +38,43 @@
         }
         console.log(battlefield);
         const comprobar = (arr, f, c) => {
-            
+            let aleman = "A";
+            let nada = "";
+            if (resultadoBatalla[f][c] === aleman || resultadoBatalla[f][c] === nada) resultadoBatalla[f][c] = "X";
+            //Izquierda
+            if (c > 0 && (resultadoBatalla[f][c - 1] === aleman || resultadoBatalla[f][c - 1] === nada)) {
+                resultadoBatalla[f][c - 1] = "X";
+                comprobar(arr, f, c - 1);
+            }
+            //derecha
+            if (c < resultadoBatalla[f].length - 1 && (resultadoBatalla[f][c + 1] === aleman || resultadoBatalla[f][c + 1] === nada)) {
+                resultadoBatalla[f][c + 1] = "X";
+                comprobar(arr, f, c + 1);
+            }
+            //abajo
+            if (f < resultadoBatalla.length - 1 && (resultadoBatalla[f + 1][c] === aleman || resultadoBatalla[f + 1][c] === nada)) {
+                resultadoBatalla[f + 1][c] = "X";
+                comprobar(arr, f + 1, c);
+            }
+            //arriba
+            if (f > 0 && (resultadoBatalla[f - 1][c] === aleman || resultadoBatalla[f - 1][c] === nada)) {
+                resultadoBatalla[f - 1][c] = "X";
+                comprobar(arr, f - 1, c);
+            }
         }
 
-        comprobar(battlefield, 0, 0);
+        comprobar(resultadoBatalla, 0, 0);
+
+        for (let i = 0; i < resultadoBatalla.length; i++) {
+
+            texto2 += resultadoBatalla[i] + "<br/>";
+
+        }
 
 
         document.getElementById("matriz").innerHTML = texto;
+
+        document.getElementById("matriz2").innerHTML = texto2;
 
 
     </script>
