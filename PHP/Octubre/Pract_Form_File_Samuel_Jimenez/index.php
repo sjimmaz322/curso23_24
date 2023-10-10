@@ -10,10 +10,10 @@ if (isset($_POST["btnGuardar"])) { //Miro si hay errores
     $error_sexo = !isset($_POST["sex"]);
     //Error de archivo
 
-    $error_archivo = ($_FILES["foto"]["name"] == "" && $_FILES["foto"]["error"]) || !getimagesize($_FILES["foto"]["tmp_name"]) ||  ($_FILES["foto"]["size"]) > 500 * 1024;
+    $error_archivo = ($_FILES["foto"]["name"] != "" && $_FILES["foto"]["error"]) || !getimagesize($_FILES["foto"]["tmp_name"]) ||  ($_FILES["foto"]["size"]) > 500 * 1024;
 
 
-    $error_form = $error_nombre || $error_user || $error_dni || $error_con || $error_sexo|| $error_archivo;
+    $error_form = $error_nombre || $error_user || $error_dni || $error_con || $error_sexo || $error_archivo;
 }
 if (isset($_POST["btnGuardar"]) && !$error_form) {
     require "vistasRespuestas.php";
