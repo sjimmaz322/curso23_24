@@ -66,7 +66,9 @@
         comprobar(resultadoBatalla, 0, 0);
 
         for (let i = 0; i < resultadoBatalla.length; i++) {
-
+            for (let j = 0; j < resultadoBatalla[i].length; j++) {
+                if (resultadoBatalla[i][j] === "") resultadoBatalla[i][j] = " - ";
+            }
             texto2 += resultadoBatalla[i] + "<br/>";
 
         }
