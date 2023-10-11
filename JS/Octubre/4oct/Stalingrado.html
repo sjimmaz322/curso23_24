@@ -37,7 +37,10 @@
 
         }
         console.log(battlefield);
+
+        //-------------
         const comprobar = (arr, f, c) => {
+
             let aleman = "A";
             let nada = "";
             if (resultadoBatalla[f][c] === aleman || resultadoBatalla[f][c] === nada) resultadoBatalla[f][c] = "X";
@@ -62,7 +65,7 @@
                 comprobar(arr, f - 1, c);
             }
         }
-
+        //----------------
         comprobar(resultadoBatalla, 0, 0);
 
         for (let i = 0; i < resultadoBatalla.length; i++) {
@@ -73,11 +76,26 @@
 
         }
 
+        let gananAlemanes = true;
+        for (let i = 0; i < resultadoBatalla.length; i++) {
+            for (let j = 0; j < resultadoBatalla[i].length; j++) {
+                if (resultadoBatalla[i][j] == "A") {
+                    gananAlemanes = false;
+                    break;
+                }
+            }
+
+        }
+
 
         document.getElementById("matriz").innerHTML = texto;
-
         document.getElementById("matriz2").innerHTML = texto2;
 
+        if (gananAlemanes) {
+            document.getElementById("ganador").innerHTML = "Ganan los alemanes";
+        } else {
+            document.getElementById("ganador").innerHTML = "Ganan los rusos";
+        }
 
     </script>
 

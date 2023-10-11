@@ -4,7 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Buscador de código postal</title>
+    <style>
+        div {border: 1px solid black;
+        padding-left: 25px;}
+    </style>
 </head>
 
 <body>
@@ -17,24 +21,24 @@ No importan las mayúsculas y minúsculas en la búsqueda.
     -->
     <div>
         <p>
-            <input type="text" id="texto" name="texto" /><input type="submit" name="btn" id="btn" value="enviar"
-                onclick=buscar() />
+            <span>Introduzca un código postal</span><br />
+            <input type="text" id="texto" name="texto" /><br />
+            <input type="submit" name="btn" id="btn" value="enviar" onclick=buscar() />
         </p>
         <p id="result"></p>
     </div>
     <script>
-        let arrayCiudades = [{ cp: 28924, ciudad: "Estepona" }, { cp: 29611, ciudad: "Istán" }, { cp: 29670, ciudad: "San Pedro" }, { cp: 29650, ciudad: "Mijas" }, { cp: 29692, ciudad: "Manilva" }];
-        let ciudad = "";
+        let arrayCiudades = [
+            { cp: 28924, ciudad: "Estepona" },
+            { cp: 29611, ciudad: "Istán" },
+            { cp: 29670, ciudad: "San Pedro" },
+            { cp: 29650, ciudad: "Mijas" },
+            { cp: 29692, ciudad: "Manilva" }];
         function buscar() {
             let valor = document.getElementById("texto").value;
             let pob = arrayCiudades.find((c) => { return (c.cp == valor) });
-            if (pob != undefined) {
-                document.getElementById("result").innerHTML = pob.ciudad;
-            } else {
-                document.getElementById("result").innerHTML = "Miauravilloso, la ciudad no está en el array";
-            }
-            //console.log(hay.ciudad);
-
+            let obj = document.getElementById("result");
+            (pob != undefined) ? obj.innerHTML = pob.ciudad : obj.innerHTML = "Miauravilloso, la ciudad no está en el array";
         }
     </script>
 
