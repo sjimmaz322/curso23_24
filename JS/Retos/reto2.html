@@ -1,0 +1,45 @@
+<html>
+
+<head>
+    <title>retos JavaScript</title>
+</head>
+
+<body>
+    <h1>retos JavaScript</h1>
+    <script>
+        var cars = ["Saab", "Volvo", "BMW", ["Honda", "Toyota", ["Lexus", "Mercedes", "Lada"], "Hyunday"]];
+        var carrakos = ["Chevrolet", "Tesla", "BMW", ["Honda", "Infiniti", ["Lexus", "Mercedes", "Kia"], "Hyunday"], ["Mazda", "Mercedes", "Jeep", ["KTM", "Nissan", "Isuzu"]]];
+        cars = cars.flat(Infinity);
+        carrakos = carrakos.flat(Infinity);
+        //Alguien sabe hacer una lista única de coches con los dos arrays (sin repeticiones)?
+        var coches = [];
+        coches = cars.filter((c) => carrakos.find((v) => v == c));
+        console.log(coches);
+        //Alguien sabría decirme los coches de carrakos que no estén en cars?
+        var cochesNoRepes = [];
+        cochesNoRepes = cars.filter((c) => !carrakos.find((v) => v == c));
+        console.log(cochesNoRepes);
+        var cars = ["Saab", "Volvo", "BMW", ["Honda", "Toyota", ["Lexus", "Mercedes", "Lada"], "Hyunday"]];
+        cars = cars.flat(Infinity);
+        var buddies = [{ firstName: "Chuck", lastName: "Norris", car: "Honda" }, { firstName: "Yakie", lastName: "Chang", car: "BMV" }, { firstName: "Bruce", lastName: "Lee", car: "Honda" }, { firstName: "Steven", lastName: "Seagal", car: "Lada" }];
+        //-Nombre y apellidos de los buddies que usan un Honda
+        buddiesHonderos = buddies.filter((c) => (c.car == "Honda")).map(a => a.firstName + " " + a.lastName);
+        console.log(buddiesHonderos);
+        //-Marcas utilizadas por los buddies
+        marcasBuddies = buddies.map(a => a.car);
+        console.log(marcasBuddies);
+        //-Marcas no utilizadas por los buddies.
+        noMarcasBuddies = cars.filter((c) => !buddies.find((v) => v.car == c));
+        console.log(noMarcasBuddies);
+        //-Cuantas marcas han sido utilizadas
+        marcasUsadas = cars.filter(x => buddies.find((y) => x == y.car)).length;
+        console.log(marcasUsadas)
+        //-Cuantas marcas no han sido utilizadas
+        marcasNoUsadas = cars.filter((c) => !buddies.find((v) => c == v.car)).length;
+        console.log(marcasNoUsadas)
+
+
+    </script>
+</body>
+
+</html>
