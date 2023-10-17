@@ -17,7 +17,7 @@
     @$fd1 = fopen("prueba.txt", "r+");
     if (!$fd1)
         die("<span>No se ha podido abrir el fichero</span");
-
+    /*
     echo "<span>Por ahora todo en orden</span>";
     //fgets tiene un puntero interno, cada vez que lo pones salta al siguiente, si se sale, no peta!
     $linea = fgets($fd1);
@@ -42,14 +42,19 @@
     while ($linea = fgets($fd1)) {
         echo "<p>" . $linea . "</p>";
     }
-
+*/
     //Vamos a escribir ahora
 
     //fputs(); o fwrite();
     //Constante para fin de linea PHP_EOL (End Of Line)
 
-    fwrite($fd1, PHP_EOL . "Añadimos una quinta línea");
+    //fwrite($fd1, PHP_EOL . "Añadimos una quinta línea");
     //Cuidado, cada vez que recargues se repite y añade otra
+
+    //todos los fichero se puede leer así, pero entero, no de uno a uno
+    $todo_fichero = file_get_contents("prueba.txt");
+    //new line 2 br pone saltos de linea donde se cambie de renglón en el archivo original
+    echo nl2br($todo_fichero);
 
     fclose($fd1);
     ?>
