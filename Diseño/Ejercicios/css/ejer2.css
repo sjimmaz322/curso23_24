@@ -1,0 +1,11 @@
+.error {
+    color: red;
+}
+
+.acierto {
+    color: green;
+}
+
+#link {
+    border: 1px dotted black;
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Samuel Alejandro Jiménez Mazas -->
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,
+initial-scale=1.0" />
+    <title>NOMBRES POPULARES</title>
+</head>
+
+<body>
+    <script>
+        const GODOS =
+            ["Ataulfo", "Teudiselo", "Sisenando", "Sigérico", "Valia", "Valia", "Valia", "Valia", "Valia", "Valia", "Teudiselo", "Sisenando", "Teodórico", "Turismundo"
+                , "Éurico", "Alárico", "Gesalérico", "Amalárico", "Teudis", "Teudiselo", "Sisenando", "Quintila", "Ágila", "Atanagildo", "Liuva", "Leovigildo", "Recaredo",
+                "Vitérico", "Sisebuto", "Suintila", "Sisenando", "Quintila", "Chindasvinto",
+                "Recesvinto", "Vamba", "Ervigio", "Égica", "Vitiza", "Rodrigo"]
+        var uno = ""
+        var numuno = 0;
+        var dos = ""
+        var numdos = 0;
+        var tres = ""
+        var numtres = 0;
+        // ESCRIBE AQUÍ TU CÓDIGO
+
+        const coloca = (nombre, cuantos) => {
+            //console.log(nombre + " - " + cuantos)
+            if (cuantos > numuno) {
+                numtres = numdos;
+                tres = dos;
+                numdos = numuno;
+                dos = uno;
+                numuno = cuantos;
+                uno = nombre;
+            }
+            if (cuantos < numuno && cuantos > numdos) {
+                numtres = numdos;
+                tres = dos;
+                numdos = cuantos;
+                dos = nombre;
+            }
+            if (cuantos < numdos && cuantos > numtres) {
+                numtres = cuantos;
+                tres = nombre;
+            }
+            // console.log(nombre + " - " + cuantos);
+            // console.log(uno + " : " + numuno + " / " + dos + " : " + numdos + " / " + tres + " : " + numtres)
+        }
+
+        GODOS.map(g => {
+            coloca(g, GODOS.filter(n => n === g).length)
+        }
+        );
+
+        console.log(uno + " : " + numuno + " / " + dos + " : " + numdos + " / " + tres + " : " + numtres)
+
+
+
+    </script>
+</body>
+
+</html>

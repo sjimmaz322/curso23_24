@@ -5,6 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Examen de pŕactica</title>
+    <style>
+        .center {
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -95,6 +100,43 @@
 
             $error_txt2 = $_POST["txt2"] == "";
         }
+        function myLength($palabra)
+        {
+            $cont = 0;
+            while (isset($palabra[$cont])) {
+                $cont++;
+            }
+            return $cont;
+        }
+        function explodeMA($texto, $sepa)
+        {
+            $aux = [];
+            $longitud = myLength($texto);
+            $i = 0;
+
+            while ($i < $longitud && $texto[$i] != $sepa)
+                $i++;
+
+            if ($i < $longitud) {
+                $j = 0;
+                $aux[$j] = $texto[$i];
+                for ($i = $i + 1; $i < $longitud; $i++) {
+                    if ($texto[$i] != $sepa) {
+                        $aux[$j] .= $texto[$i];
+                    } else {
+                        while ($i < $longitud && $texto[$i] == $sepa)
+                            $i++;
+
+                        if ($i < $longitud) {
+                            $j++;
+                            $aux[$j] = $texto[$i];
+                        }
+                    }
+                }
+            }
+            return $aux;
+        }
+        /*
         function myExplode($frase, $separador)
         {
             $arr = [];
@@ -116,6 +158,7 @@
             //Devuélveme el array creado
             return $arr;
         }
+        */
         ?>
         <h2>Ejercicio 3</h2>
         <p>Realizar una página php con nombre ejercicio3.php, que contenga un
@@ -134,21 +177,106 @@
                 }
             }
             ?>
-            <select name="separadores" id="separadores">
-                <option value="," <?php if ($_POST["separadores"] == ",") echo "selected" ?>>,</option>
-                <option value=";" <?php if ($_POST["separadores"] == ";") echo "selected" ?>>;</option>
-                <option value=" " <?php if ($_POST["separadores"] == " ") echo "selected" ?>>(espacio)</option>
-                <option value=":" <?php if ($_POST["separadores"] == ":") echo "selected" ?>>:</option>
+            <select name="sep" id="sep">
+                <option value="," <?php if (isset($_POST["sep"]) && $_POST["sep"] == ",") echo "selected" ?>>,</option>
+                <option value=";" <?php if (isset($_POST["sep"]) && $_POST["sep"] == ";") echo "selected" ?>>;</option>
+                <option value=" " <?php if (isset($_POST["sep"]) && $_POST["sep"] == " ") echo "selected" ?>>(espacio)</option>
+                <option value=":" <?php if (isset($_POST["sep"]) && $_POST["sep"] == ":") echo "selected" ?>>:</option>
             </select>
             <input type="submit" name="btn3" id="btn3" value="Comprobar">
         </form>
         <?php
         if (isset($_POST["btn3"]) && !$error_txt2) {
-            $palabrejas = myExplode($_POST["txt2"], $_POST["separadores"]);
+            $palabrejas = explodeMA($_POST["txt2"], $_POST["sep"]);
             echo "<span> Hay " . count($palabrejas) . " palabras</span>";
         }
         ?>
 
+    </div>
+    <div>
+        <h2>Ejercicio 4</h2>
+        <p>Realizar una página php con nombre ejercicio4.php, que al cargar
+            compruebe si en una carpeta con nombre Horario, existe el archivo
+            “horarios.txt”.</p>
+        <?php
+        if (isset($_POST["btn4"])) {
+            $error_nombre2 = $_FILES["file2"]["name"] == "";
+            $error_tam2 = $_FILES["file2"]["size"] > 1000 * 1024;
+            $error_formato2 = $_FILES["file2"]["type"] != "text/plain";
+            $error_error2 = $_FILES["file2"]["error"];
+            //
+            $error_fichero2 = $error_nombre2 || $error_tam2 || $error_formato2 || $error_error2;
+
+            if (isset($_POST["btn4"]) && !$error_fichero2) {
+                @$var = move_uploaded_file($_FILES["file2"]["tmp_name"], "Horarios/horarios.txt");
+
+                if (!$var) {
+                    echo "<h3>No se ha podido crear el fichero en la carpeta destino.</h3>";
+                } else {
+                    echo "<span>Archivo creado con éxito</span>";
+                }
+            }
+        }
+
+        @$fd = fopen("Horarios/horarios.txt", "r");
+        if ($fd) {
+            //Aquí se gestiona el fichero
+        ?>
+            <h2>Horario de los profesores</h2>
+            <form action="examen1.php" method="post" enctype="multipart/form-data">
+                <label for="profs">Profesor:</label>
+                <select id="profs" name="profs">
+                    <?php
+
+                    while ($linea = fgets($fd)) {
+                        $datos = explode("\t", $linea);
+                        if (isset($_POST["btn5"]) && $_POST["profs"] == $datos[0]) {
+                            echo "<option selected value='" . $datos[0] . "'> " . $datos[0] . "</option>";
+                            $prof_selec = $datos;
+                        } else {
+                            echo   "<option value='" . $datos[0] . "'> " . $datos[0] . "</option>";
+                        }
+                    }
+                    ?>
+                </select>
+                <button name="btn5" id="btn5" value="Comprobar">Comprobar</button>
+            </form>
+            <?php
+            if (isset($_POST["btn5"])) {
+                echo "<h3 class='center'> Datos del profesor: " . $prof_selec[0] . "</h3>";
+            }
+            ?>
+
+
+        <?php
+            fclose($fd);
+        } else {
+        ?>
+            <form action="examen1.php" method="post" enctype="multipart/form-data">
+                <label for="file2">Elija el fichero a subir (Max 1 MB)</label>
+                <input type="file" accept=".txt" name="file2" id="file2">
+                <?php
+                if (isset($_POST["btn4"]) && $error_fichero2) {
+                    if ($_FILES["file2"]["name"] == "") {
+                        echo "<span> * No ha seleccionado ningún archivo * </span>";
+                    } else if ($_FILES["file2"]["size"] > 1000 * 1024) {
+                        echo "<span> * El archivo es demasiado grande * </span>";
+                    } else if ($_FILES["file2"]["error"]) {
+                        echo "<span> * Falló la carga del archivo * </span>";
+                    } else {
+                        echo "<span> * El archivo no es un archivo de texto * </span>";
+                    }
+                }
+
+                ?>
+
+                <input type="submit" id="btn4" name="btn4" value="Subir">
+
+            </form>
+        <?php
+            echo "<h2>No se ha podido abrir el archivo: Horarios/horarios.txt</h2>";
+        }
+        ?>
     </div>
 </body>
 
