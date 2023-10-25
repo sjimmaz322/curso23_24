@@ -16,15 +16,15 @@
 
         function arboreo(nodo, arr) {
             arr.map(a => {
-                let hijo = document.createElement("li");
+
                 if (Array.isArray(a)) {
 
+                    let nodo2 = document.createElement("ul");
+                    nodo.appendChild(nodo2)
 
-                    nodo.appendChild(hijo);
-                    let ul = document.createElement("ul");
-                    hijo.appendChild(ul);
-                    arboreo(ul, a);
+                    arboreo(nodo2, a);
                 } else {
+                    let hijo = document.createElement("li");
                     let texto = document.createTextNode(a);
 
                     hijo.appendChild(texto);
@@ -42,6 +42,3 @@
 </body>
 
 </html>
-<li>
-    BMW <ul></ul>
-</li>

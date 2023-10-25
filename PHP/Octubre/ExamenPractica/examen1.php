@@ -9,6 +9,24 @@
         .center {
             text-align: center;
         }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 90%;
+            margin: 0 auto;
+            background-color: azure;
+        }
+
+        .recreo {
+            text-align: center;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -232,18 +250,57 @@
                         $datos = explode("\t", $linea);
                         if (isset($_POST["btn5"]) && $_POST["profs"] == $datos[0]) {
                             echo "<option selected value='" . $datos[0] . "'> " . $datos[0] . "</option>";
-                            $prof_selec = $datos;
+                            $prof_selec = $datos[0];
+                            for ($i = 1; $i < count($datos); $i += 3) {
+                                $horario_profe[$datos[$i]][$datos[$i + 1]] = $datos[$i + 2];
+                            }
                         } else {
                             echo   "<option value='" . $datos[0] . "'> " . $datos[0] . "</option>";
                         }
                     }
                     ?>
                 </select>
-                <button name="btn5" id="btn5" value="Comprobar">Comprobar</button>
+                <button name="btn5" id="btn5" value="Comprobar">Ver horario</button>
             </form>
             <?php
             if (isset($_POST["btn5"])) {
-                echo "<h3 class='center'> Datos del profesor: " . $prof_selec[0] . "</h3>";
+                echo "<h3 class='center'> Datos del profesor: " . $prof_selec . "</h3>";
+                //Aquí va la tabla
+                $horas[1] = "8:15 - 9:15";
+                $horas[] = "9:15 - 10:15";
+                $horas[] = "10:15 - 11:15";
+                $horas[] = "11:15 - 11:45";
+                $horas[] = "11:45 - 12:45";
+                $horas[] = "12:45 - 13:45";
+                $horas[] = "13:45 - 14:45";
+
+                echo "<table>";
+            ?>
+                <tr>
+                    <th>-</th>
+                    <th>Lunes</th>
+                    <th>Martes</th>
+                    <th>Miercoles</th>
+                    <th>Jueves</th>
+                    <th>Viernes</th>
+                </tr>
+            <?php
+                for ($hora = 1; $hora <= 7; $hora++) {
+                    echo "<tr>";
+                    echo "<th>" . $horas[$hora] . "</th>";
+                    if ($hora != 4) {
+                        for ($dia = 0; $dia < 5; $dia++) {
+                            if (isset($horario_profe[$dia][$hora])) {
+                                echo "<td>" . $horario_profe[$dia][$hora] . "</td>";
+                            }
+                            echo "<td></td>";
+                        }
+                    } else {
+                        echo "<td class='recreo' colspan=5>RECREO</td>";
+                    }
+                    echo "</tr>";
+                }
+                echo "</table>";
             }
             ?>
 
