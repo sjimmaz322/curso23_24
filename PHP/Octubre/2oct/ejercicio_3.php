@@ -58,6 +58,7 @@ function myStringReplace($palabro)
                 if ($error_frase) {
                     echo "<span> * El campo no se puede dejar vacío *";
                 }
+                
                 ?>
             </p>
             <input type="submit" name="btnComprobar" id="btnComprobar" value="Comprobar" />
