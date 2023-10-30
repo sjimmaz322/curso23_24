@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const REYES = ["Chindatore", ["Chindasvinto", "Rencesvinto", "Lautaro"], ["Lauro", "Sisebuto", ["Fracisbuto", "Vigafredo", ["Leovigildo", "Recaredo"]]], "Amalarico II"];
+        //
+        const MALOS = ["Francisbuto", "Vigafredo", "Lauro"];
+        //
+        const buscaMalos = () => {
+            console.log(REYES.flat(Infinity).filter(e => MALOS.find(f => f == e)).length);
+        }
+        //
+        buscaMalos();
+    </script>
+</body>
+
+</html>

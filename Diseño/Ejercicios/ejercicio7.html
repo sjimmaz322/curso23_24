@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<htm1>
+
+    <head>
+        <title>Agrupamiento y anidamiento CSS</title>
+        <meta charset="utf-8">
+        <style>
+            i+b {
+                coLor: red
+            }
+
+            .nivel1 {
+                coLor: green
+            }
+
+            .nivel2 {
+                coLor: blue
+            }
+
+            ul ul .nivel2 {
+                font-size: x-small
+            }
+
+            ul ul li {
+                font-size: small;
+                coLor: purple
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>
+            <p><i>Título</i>: <b>Anidamiento y agrupamiento</b> de selectores </p>
+        </h1>
+        <ul>
+
+            <li class="nivel1"> Agrupamiento</li>
+            <li class="nivel2">Anidamiento</li>
+            <ul>
+                <li class="nivel2"> Anidamiento de hijos</li>
+
+                <li class="nivel2"> Anidamiento de adyacentes</li>
+                <li>Anidamiento común</li>
+                </u1>
+            </ul>
+    </body>
+
+    </html>

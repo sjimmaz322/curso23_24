@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tortura vikinga</title>
+</head>
+
+<body>
+    <script>
+        //
+        var vikings = '{"vikingos":[{"reino":"Noruega","reyes":["Hakon","Harald",["Ivar",["Olaf","Lars","Lasse"],"Bjorn"],"Ragnar"]},{"reino":"Dinamarca","reyes":["Frodo","Hamming",["Angantyr","Sarunas"],"Horik"]}]}';
+        //
+        let arr = ["Hakon", "Harald", ["Ivar", ["Olaf", "Lars", "Lasse"], "Bjorn"], "Ragnar"];
+        const buscaMan = (arr, nombre) => {
+            let cuantos = 0;
+            if (Array.isArray(arr)) {
+                arr.map(a => cuantos += buscaMan(a, nombre));
+            } else {
+                if (arr == nombre) {
+                    cuantos++;
+                }
+            }
+            return cuantos;
+        }
+        /*
+        console.log(buscaMan(arr, "Harald"));
+        console.log(buscaMan(arr, "Emerith"));
+        console.log(buscaMan(arr, "Lasse"));
+        */
+        const esrey = (rey) => {
+            vikings.vikingos.find(e => e.reyes.find(r => buscaMan(r, rey))) === undefined ? console.log("No es") : console.log("Si es");
+        }
+        esrey("Harald");
+        esrey("Emerith");
+        esrey("Lasse");
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge VI</title>
+</head>
+
+<body>
+    <script>
+        const REYES = ["Chindatore", ["Chindasvinto", "Rencesvinto", "Lautaro"], ["Lauro", "Sisebuto", ["Fracisbuto", "Vigafredo", ["Leovigildo", "Recaredo"]]], "Amalarico II"];
+        const buscaReyes = (arr, generacion) => {
+            arr.map(e => {
+                if (Array.isArray(e)) {
+                    buscaReyes(e, !generacion);
+                } else {
+                    if (generacion) { console.log(e) }
+                }
+
+            });
+        }
+
+        buscaReyes(REYES, false);
+    </script>
+</body>
+
+</html>
