@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>INTERSECTION LIST</title>
+</head>
+
+<body>
+    <p>PRIMERA LISTA:</p>
+    <ul id="lista1">
+        <li>manzana</li>
+        <li>pera</li>
+        <ul>
+            <li>conferencia</li>
+            <ul>
+                <li>conferenciaverde</li>
+                <li>conferenciaamarilla</li>
+                <li>conferenciaroja</li>
+            </ul>
+            <li>peradeagua</li>
+            <li>peritadulce</li>
+            <ul>
+                <li>Dimas</li>
+                <li>Gestas</li>
+                <li>Malakatos</li>
+                <li>Jose</li>
+            </ul>
+        </ul>
+        <li>limon</li>
+        <li>limon</li>
+        <li>LIMON</li>
+    </ul>
+    <p>Segunda lista:</p>
+    <ul id="lista2">
+        <li>manzana</li>
+        <li>manzana</li>
+        <li>manzana</li>
+        <li>manzana</li>
+        <li>pera</li>
+        <li>limon</li>
+    </ul>
+
+    <p id="lista3">
+        <span>Lista 3:</span>
+    </p>
+
+
+    <script>
+
+        //el contenido del script lo colocaré aquí
+
+        /*
+        A - Meter uno en un array
+        B - Meter otro en otro array
+        C - Ordenar arrays
+        D - Quitar duplicados
+        E - Concaternarlos
+        F - Ordenarlos
+        G - Buscar otra vez duplicados
+        H - Los duplicados es lo que buscamos
+        */
+
+        var list1 = [], list2 = [], list3 = [];
+        const inserta = (nodo, lista) => {
+            if (nodo.nodeName == "LI") {
+                lista.push(nodo.innerHTML.toUpperCase());
+            } else {
+                for (let i = 0; i < nodo.children.length; i++) {
+                    inserta(nodo.children[i], lista);
+                }
+            }
+
+            return lista;
+        }
+
+        const eliminarDuplicados = (lista) => {
+            return lista.filter((e, i, arr) => i == 0 || arr[i] != arr[i - 1]);
+
+        }
+
+        const buscarDuplicados = (lista) => {
+            return lista.filter((e, i, arr) => i > 0 && arr[i] == arr[i - 1]);
+        }
+
+        //A
+        inserta(document.getElementById("lista1"), list1);
+
+        //B
+        inserta(document.getElementById("lista2"), list2);
+
+        //C
+        list1.sort();
+        list2.sort();
+
+        //D
+        list1 = eliminarDuplicados(list1);
+        list2 = eliminarDuplicados(list2);
+
+        //E
+        list3 = list1.concat(list2);
+
+        //F
+        list3.sort();
+
+        //G
+        list3 = buscarDuplicados(list3);
+
+        //H
+        console.log(list3);
+
+        //Creamos la tercera lista en un <p> y la rellenamos
+        let listado = document.getElementById("lista3");
+        let listaFinal = document.createElement("UL");
+
+        for (let i = 0; i < list3.length; i++) {
+            let parte = document.createElement("LI");
+            let texto = document.createTextNode(list3[i]);
+            parte.appendChild(texto);
+            listaFinal.appendChild(parte);
+        }
+
+        listado.appendChild(listaFinal);
+
+
+    </script>
+
+</body>
+
+</html>
