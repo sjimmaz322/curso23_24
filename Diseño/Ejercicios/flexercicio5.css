@@ -56,11 +56,11 @@ section#news>article>h5 {
     }
 
     section#news>article {
-        flex:  25%;
+        flex: 1;
     }
 
     section#news>article.breaking {
-        flex-grow:  50%;
+        flex: 2;
     }
 }
 
