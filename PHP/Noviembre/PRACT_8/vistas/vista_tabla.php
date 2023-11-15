@@ -22,7 +22,7 @@ while ($tupla = mysqli_fetch_array($resultado)) {
     echo "<td>" . $tupla["id_usuario"] . "</td>";
     echo "<td><img class='normal' src='img/" . $tupla["foto"] . "' alt='foto perfil' name='foto_user' title='foto_user'></td>";
     echo "<td><button class='enlace' type='submit' name='btnDetalle' id='btnDetalle' value='" . $tupla["id_usuario"] . "'>" . $tupla["nombre"] . "</button></td>";
-    echo "<td><button class='enlace' type='submit' value='editarUser' name='editarUser'>Editar</button> - <button class='enlace' type='submit' value='borrarUser' name='borrarUser'>Borrar</button></td>";
+    echo "<td><button class='enlace' type='submit'  name='editarUser' value='" . $tupla["id_usuario"] . "'>Editar</button> - <button class='enlace' type='submit'  name='borrarUser' value='" . $tupla["id_usuario"] . "'>Borrar</button></td>";
     echo "</tr>";
 }
 echo "</table>";

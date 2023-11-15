@@ -7,7 +7,7 @@ if (isset($_POST["btnGuardar"])) {
     $error_dni = $_POST["nuevoDni"] == "" || strlen($_POST["nuevoDni"]) != 10 /*|| letraCorrectaDni($_POST["nuevoDni"])*/ || yaEstaba("usuarios", "dni", $_POST["nuevoDni"]);
     $error_sexo = !isset($_POST["sex"]);
     if ($_FILES["pic"]["name"] != "") {
-        $error_foto = $_FILES["pic"]["size"] > 500 * 1240 || $_FILES["pic"]["error"] || $_FILES["pic"]["type"] != "png";
+        $error_foto = $_FILES["pic"]["size"] > 500 * 1240 || $_FILES["pic"]["error"] || $_FILES["pic"]["type"] != "image/png";
         $error_form = $error_usuario || $error_clave || $error_nombre || $error_dni || $error_sexo || $error_foto;
     } else {
         $error_form = $error_usuario || $error_clave || $error_nombre || $error_dni || $error_sexo;
@@ -59,8 +59,8 @@ if (isset($_POST["btnGuardar"]) && $error_dni) {
         echo "<span class='error'> * El campo es obligatorio *</span>";
     } else if (yaEstaba("usuarios", "dni", $_POST["nuevoDni"])) {
         echo  "<span class='error'> * Ya hay un registro con ese nombre de usuario *</span>";
-   // } else if (letraCorrectaDni($_POST["nuevoDni"])) {
-   //     echo  "<span class='error'> * La letra no corresponde a ese número de DNI *</span>";
+        // } else if (letraCorrectaDni($_POST["nuevoDni"])) {
+        //     echo  "<span class='error'> * La letra no corresponde a ese número de DNI *</span>";
     } else {
         echo "<span class='error'> * Formato no correcto, el formato es 12345678-L *</span>";
     }
@@ -101,9 +101,23 @@ echo "<p>
 echo "</form>";
 if (isset($_POST["btnGuardar"]) && !$error_form) {
     echo "<p>Funciona</p>";
-   
-    $consulta = "INSERT INTO 'usuarios'('usuario', 'clave', 'nombre', 'dni', 'sexo', 'foto') VALUES ($_POST[nuevoUsuario],$_POST[nuevaClave],$_POST[nuevoNombre],$_POST[nuevoDni],$_POST[sex],$nombre_foto)";
+    $consulta = "select * from usuarios";
     $resultado = mysqli_query($conexion, $consulta);
+    $last_index = 0;
+    while ($tupla = mysqli_fetch_array($resultado)) {
+        $last_index = $tupla["id_usuario"];
+    }
+    $last_index += 1;
+    if ($_FILES["pic"]["name"] == "") {
+        $nombre_foto = "no_imagen.jpg";
+    } else {
+        $nombre_foto = "img_" . $last_index . ".png";
+    }
+
+    @$var = move_uploaded_file($_FILES["pic"]["tmp_name"], "img/" . "img_" . $last_index . ".png");
+    $insersion = "INSERT INTO usuarios (usuario, clave, nombre, dni, sexo, foto) VALUES ('" . $_POST['nuevoUsuario'] . "', '" . $_POST['nuevaContra'] . "', '" . $_POST['nuevoNombre'] . "', '" . $_POST['nuevoDni'] . "', '" . $_POST['sex'] . "', '" . $nombre_foto . "')";
+
+    $resultado = mysqli_query($conexion, $insersion);
 }
 ?>
 <!---->

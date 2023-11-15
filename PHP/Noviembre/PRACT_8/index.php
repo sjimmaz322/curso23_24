@@ -60,6 +60,9 @@ require("src/funciones.php");
     if (isset($_POST["btnCrear"]) || isset($_POST["btnGuardar"])) {
         require("vistas/vista_nuevoUsuario.php");
     }
+    if(isset($_POST["borrarUser"])){
+        require("vistas/vista_borrar.php");
+    }
     //
     require("vistas/vista_tabla.php");
     //
