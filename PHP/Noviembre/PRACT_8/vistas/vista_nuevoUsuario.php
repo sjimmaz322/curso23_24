@@ -12,6 +12,7 @@ if (isset($_POST["btnGuardar"])) {
     } else {
         $error_form = $error_usuario || $error_clave || $error_nombre || $error_dni || $error_sexo;
     }
+    //
 }
 //
 echo "<h2>Agregar Nuevo Usuario:</h2>";
