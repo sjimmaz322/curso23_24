@@ -1,6 +1,7 @@
 <?php
 //Nombre img perfil -> img_[id_usuario].png sin corchetes
 $conexion = mysqli_connect("localhost", "jose", "josefa", "bd_cv");
+require("src/funciones.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +48,6 @@ $conexion = mysqli_connect("localhost", "jose", "josefa", "bd_cv");
             max-width: 258px;
             height: auto;
         }
-
     </style>
 </head>
 
@@ -57,7 +57,7 @@ $conexion = mysqli_connect("localhost", "jose", "josefa", "bd_cv");
     if (isset($_POST["btnDetalle"])) {
         require("vistas/vista_detalle.php");
     }
-    if (isset($_POST["btnCrear"])) {
+    if (isset($_POST["btnCrear"]) || isset($_POST["btnGuardar"])) {
         require("vistas/vista_nuevoUsuario.php");
     }
     //
