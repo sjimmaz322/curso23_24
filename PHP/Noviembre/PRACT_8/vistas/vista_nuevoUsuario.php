@@ -4,7 +4,7 @@ if (isset($_POST["btnGuardar"])) {
     $error_usuario = $_POST["nuevoUsuario"] == "" || strlen($_POST["nuevoUsuario"]) > 30 || yaEstaba("usuarios", "usuario", $_POST["nuevoUsuario"]);
     $error_clave = $_POST["nuevaContra"] == "" || strlen($_POST["nuevaContra"]) > 50;
     $error_nombre = $_POST["nuevoNombre"] == "" || strlen($_POST["nuevoNombre"]) > 50;
-    $error_dni = $_POST["nuevoDni"] == "" || strlen($_POST["nuevoDni"]) != 10 || letraCorrectaDni($_POST["nuevoDni"]) || yaEstaba("usuarios", "dni", $_POST["nuevoDni"]);
+    $error_dni = $_POST["nuevoDni"] == "" || strlen($_POST["nuevoDni"]) != 10 || /*letraCorrectaDni($_POST["nuevoDni"]) ||*/ yaEstaba("usuarios", "dni", $_POST["nuevoDni"]);
     $error_sexo = !isset($_POST["sex"]);
     if ($_FILES["pic"]["name"] != "") {
         $error_foto = $_FILES["pic"]["size"] > 500 * 1240 || $_FILES["pic"]["error"] || $_FILES["pic"]["type"] != "image/png";
@@ -59,8 +59,8 @@ if (isset($_POST["btnGuardar"]) && $error_dni) {
         echo "<span class='error'> * El campo es obligatorio *</span>";
     } else if (yaEstaba("usuarios", "dni", $_POST["nuevoDni"])) {
         echo  "<span class='error'> * Ya hay un registro con ese nombre de usuario *</span>";
-    } else if (letraCorrectaDni($_POST["nuevoDni"])) {
-        echo  "<span class='error'> * La letra no corresponde a ese número de DNI *</span>";
+   /* } else if (letraCorrectaDni($_POST["nuevoDni"])) {
+        echo  "<span class='error'> * La letra no corresponde a ese número de DNI *</span>";*/
     } else {
         echo "<span class='error'> * Formato no correcto, el formato es 12345678-L *</span>";
     }
@@ -85,7 +85,7 @@ if (isset($_POST["btnGuardar"]) && $error_form) {
     if ($_FILES["pic"]["name"] != "") {
         if ($_FILES["pic"]["size"] > 500 * 1240) {
             echo "<span class='error'> * El archivo es demasiado grande. Tam. máximo 500 * </span>";
-        } else if ($_FILES["pic"]["type"] != "png") {
+        } else if ($_FILES["pic"]["type"] != "image/png") {
             echo "<span class='error'> * El archivo seleccionado no es una imagen con el formato .PNG * </span>";
         } else {
             echo "<span class='error'> * No se ha podido subir el archivo al servidor * </span>";
