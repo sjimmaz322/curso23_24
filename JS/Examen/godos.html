@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="llama('godos')">GODOS</button>
+    <button onclick="llama('normandos')">NORMANDOS</button>
+    <div id="botonera"></div>
+    <script>
+        /* var newButton = document.createElement("button");
+        newButton.innerHTML = "AMALARICO";
+        let ul = document.createElement("ul");
+        let li = document.createElement("li");
+        ul.appendChild(li)
+        li.appendChild(newButton)
+        document.body.appendChild(ul);
+        Array.isArray(e) // true si e es un array y false en caso contrario.*/
+       
+ const mostrar=()=>{
+  
+        // realizo la conexión 
+        var xmlhttp= new XMLHttpRequest()
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState==4 && this.status==200){
+                let resultado=JSON.parse(this.responseText);
+               // console.log(resultado);
+                llama(resultado);
+            }
+
+        };
+        xmlhttp.open("GET","http://localhost/Proyectos/2DAW2324/JS/Examen/examen.php?godos=",true);
+        xmlhttp.send();
+
+ }
+      
+
+        // funcion llama
+
+        const llama=(phpObj)=>{
+            let out="";
+            for (let i = 0; i < phpObj.length; i++) {
+              //console.log(phpObj[i]);
+              out+=phpObj;
+              console.log( out)
+            }
+
+
+        }
+       
+    </script>
+</body>
+
+</html>
