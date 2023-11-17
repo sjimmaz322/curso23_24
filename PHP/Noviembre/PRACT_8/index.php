@@ -2,6 +2,8 @@
 //Nombre img perfil -> img_[id_usuario].png sin corchetes
 $conexion = mysqli_connect("localhost", "jose", "josefa", "bd_cv");
 require("src/funciones.php");
+
+require("vistas/vista_errores.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,8 +47,8 @@ require("src/funciones.php");
         }
 
         .profile {
-            max-width: 258px;
-            height: auto;
+            width: auto;
+            max-height: 258px;
         }
     </style>
 </head>
@@ -60,8 +62,11 @@ require("src/funciones.php");
     if (isset($_POST["btnCrear"]) || isset($_POST["btnGuardar"])) {
         require("vistas/vista_nuevoUsuario.php");
     }
-    if(isset($_POST["borrarUser"])){
+    if (isset($_POST["borrarUser"])) {
         require("vistas/vista_borrar.php");
+    }
+    if (isset($_POST["editarUser"])) {
+        require("vistas/vista_editar.php");
     }
     //
     require("vistas/vista_tabla.php");

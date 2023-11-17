@@ -1,19 +1,6 @@
 <?php
 
-if (isset($_POST["btnGuardar"])) {
-    $error_usuario = $_POST["nuevoUsuario"] == "" || strlen($_POST["nuevoUsuario"]) > 30 || yaEstaba("usuarios", "usuario", $_POST["nuevoUsuario"]);
-    $error_clave = $_POST["nuevaContra"] == "" || strlen($_POST["nuevaContra"]) > 50;
-    $error_nombre = $_POST["nuevoNombre"] == "" || strlen($_POST["nuevoNombre"]) > 50;
-    $error_dni = $_POST["nuevoDni"] == "" || strlen($_POST["nuevoDni"]) != 10 || /*letraCorrectaDni($_POST["nuevoDni"]) ||*/ yaEstaba("usuarios", "dni", $_POST["nuevoDni"]);
-    $error_sexo = !isset($_POST["sex"]);
-    if ($_FILES["pic"]["name"] != "") {
-        $error_foto = $_FILES["pic"]["size"] > 500 * 1240 || $_FILES["pic"]["error"] || $_FILES["pic"]["type"] != "image/png";
-        $error_form = $error_usuario || $error_clave || $error_nombre || $error_dni || $error_sexo || $error_foto;
-    } else {
-        $error_form = $error_usuario || $error_clave || $error_nombre || $error_dni || $error_sexo;
-    }
-    //
-}
+
 //
 echo "<h2>Agregar Nuevo Usuario:</h2>";
 //
@@ -52,7 +39,7 @@ if (isset($_POST["btnGuardar"]) && $error_clave) {
     }
 }
 echo "<br>";
-echo "<label for='nuevoDni'><strong>Nombre:</strong></label><br>";
+echo "<label for='nuevoDni'><strong>DNI:</strong></label><br>";
 echo "<input type='text' name='nuevoDni' id='nuevoDni' placeholder='Dni...'value='" . (isset($_POST['nuevoDni']) ? $_POST['nuevoDni'] : '') . "'>";
 if (isset($_POST["btnGuardar"]) && $error_dni) {
     if ($_POST["nuevoDni"] == "") {
@@ -72,11 +59,11 @@ if (isset($_POST["btnGuardar"]) && $error_sexo) {
 }
 ?>
 <br>
-<input type=radio id=hombre name=sex value=Hombre <?php if (isset($_POST["sex"]) && $_POST["sex"] == "Hombre") echo "checked"; ?> />
+<input type=radio id=hombre name=sex value=hombre <?php if (isset($_POST["sex"]) && $_POST["sex"] == "hombre") echo "checked"; ?> />
 <label for="hombre">Hombre</label><br>
-<input type=radio id="mujer" name=sex value=Mujer <?php if (isset($_POST["sex"]) && $_POST["sex"] == "Mujer") echo "checked"; ?> />
+<input type=radio id="mujer" name=sex value=mujer <?php if (isset($_POST["sex"]) && $_POST["sex"] == "mujer") echo "checked"; ?> />
 <label for="mujer">Mujer</label><br>
-<input type=radio id="otro" name=sex value=Otro <?php if (isset($_POST["sex"]) && $_POST["sex"] == "Otro") echo "checked"; ?> />
+<input type=radio id="otro" name=sex value=otro <?php if (isset($_POST["sex"]) && $_POST["sex"] == "otro") echo "checked"; ?> />
 <label for="otro">Otro</label><br>
 <?php
 echo "<p>";
@@ -99,25 +86,6 @@ echo "<p>
         <button type='submit' name='volver' id='volver' >Volver</button>
 </p>";
 echo "</form>";
-if (isset($_POST["btnGuardar"]) && !$error_form) {
-    echo "<p>Funciona</p>";
-    $consulta = "select * from usuarios";
-    $resultado = mysqli_query($conexion, $consulta);
-    $last_index = 0;
-    while ($tupla = mysqli_fetch_array($resultado)) {
-        $last_index = $tupla["id_usuario"];
-    }
-    $last_index += 1;
-    if ($_FILES["pic"]["name"] == "") {
-        $nombre_foto = "no_imagen.jpg";
-    } else {
-        $nombre_foto = "img_" . $last_index . ".png";
-    }
 
-    @$var = move_uploaded_file($_FILES["pic"]["tmp_name"], "img/" . "img_" . $last_index . ".png");
-    $insersion = "INSERT INTO usuarios (usuario, clave, nombre, dni, sexo, foto) VALUES ('" . $_POST['nuevoUsuario'] . "', '" . $_POST['nuevaContra'] . "', '" . $_POST['nuevoNombre'] . "', '" . $_POST['nuevoDni'] . "', '" . $_POST['sex'] . "', '" . $nombre_foto . "')";
-
-    $resultado = mysqli_query($conexion, $insersion);
-}
 ?>
 <!---->

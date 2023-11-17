@@ -39,26 +39,10 @@ if (mysqli_num_rows($resultado) > 0) {
 
     echo "<form action='index.php' method='post'>";
     echo "<p>¿Seguro que desea eliminar <strong>DEFINITIVAMENTE</strong> a este usuario?</p>";
-    echo "<p><button type='submit' name='borrarDef' id='borrarDef'>Borrar</button><button type='submit'>Volver</button></p>";
+    echo "<p><button type='submit' name='borrarDef' id='borrarDef' value='" . $_POST["borrarUser"] . "'>Borrar</button><button type='submit'>Volver</button></p>";
     echo "</form>";
 
-    if(isset($_POST["borrarDef"])) {
-        $id_borrar = $_POST["borrarUser"];
-
-        
-        $orden_borrado = "DELETE FROM `usuarios` WHERE `usuarios`.`id_usuario` =" .$id_borrar;
-        $resultado = mysqli_query($conexion, $orden_borrado);
-
-        
-        $reiniciar_autoincrement = "ALTER TABLE usuarios AUTO_INCREMENT = 1";
-        $resultado_reset = mysqli_query($conexion, $reiniciar_autoincrement);
-
-        
-        header("Location: index.html");
-        mysqli_close($conexion);
-        exit();
-    }
+    
 } else {
     echo "<p>El usuario seleccionado ya no se encuentra registrado en la BD</p>";
 }
-?>
