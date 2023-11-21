@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta</title>
+    <script>
+        function getVoto(int) {
+            xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("encuesta").innerHTML = this.responseText;
+                }
+            }
+            xmlhttp.open("GET", "encuesta_voto.php?voto=" + int, true);
+            xmlhttp.send();
+        }
+    </script>
+</head>
+
+<body>
+    <div id="encuesta">
+        <h3>Pregunta</h3>
+        <label for="opt1">Opción 1</label>
+        <input type="radio" name="voto" value="0" onclick="getVoto(this.value)">
+        <label for="opt2">Opción 2</label>
+        <input type="radio" name="voto" value="1" onclick="getVoto(this.value)">
+        <label for="opt3">Opción 3</label>
+        <input type="radio" name="voto" value="2" onclick="getVoto(this.value)">
+        <label for="opt4">Opción 4</label>
+        <input type="radio" name="voto" value="3" onclick="getVoto(this.value)">
+    </div>
+</body>
+
+</html>

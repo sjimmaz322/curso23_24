@@ -1,0 +1,37 @@
+table,
+td,
+th {
+    border: 1px solid black
+}
+
+table {
+    border-collapse: collapse;
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+}
+
+th {
+    background-color: #CCC
+}
+
+.normal {
+    width: 50px;
+}
+
+.enlace {
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline
+}
+
+.error {
+    color: red
+}
+
+.profile {
+    width: auto;
+    max-height: 258px;
+}

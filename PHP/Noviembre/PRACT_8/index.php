@@ -65,7 +65,7 @@ require("vistas/vista_errores.php");
     if (isset($_POST["borrarUser"])) {
         require("vistas/vista_borrar.php");
     }
-    if (isset($_POST["editarUser"])) {
+    if (isset($_POST["editarUser"]) || isset($_POST["btnEditar"])) {
         require("vistas/vista_editar.php");
     }
     //
