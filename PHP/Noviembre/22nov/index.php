@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+
+
 ?>
 <!------>
 <!DOCTYPE html>
@@ -15,10 +17,16 @@ session_start();
 <body>
     <h1>Teoría de sesiones</h1>
     <?php
-    $_SESSION["nombre"] = "Samuel Jiménez";
-    $_SESSION["clave"] = md5("1234");
+    if (!isset($_SESSION["nombre"])) {
+        $_SESSION["nombre"] = "Samuel Jiménez";
+        $_SESSION["clave"] = md5("1234");
+    }
     ?>
-    <p><a href="recibido.php">Ir a recibido</a></p>
+    <p><a href="recibido.php">Ver datos</a></p>
+
+    <form action="recibido.php" method="post">
+        <button type="submit" name="btnBorrarSesion" id="btnBorrarSesion">Borar datos de sesión</button>
+    </form>
 </body>
 
 </html>
