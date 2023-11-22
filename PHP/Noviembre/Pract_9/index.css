@@ -16,7 +16,8 @@ th {
 }
 
 .normal {
-    width: 50px;
+    width: auto;
+    max-height: 150px;
 }
 
 .enlace {
@@ -29,15 +30,16 @@ th {
 
 .error {
     color: red;
+    font-weight: bold;
 }
 
 .mensaje {
     color: lightseagreen;
     font-weight: bold;
-    font-size: 1.5rem;
+
 }
 
 .profile {
     width: auto;
-    max-height: 258px;
+    height: 306;
 }

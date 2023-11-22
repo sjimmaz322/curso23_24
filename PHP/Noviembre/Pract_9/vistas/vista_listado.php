@@ -20,7 +20,7 @@ while ($tupla = mysqli_fetch_array($resultado)) {
     echo "<td>" . $tupla["idPelicula"] . "</td>";
     echo "<td><button class='enlace' type='submit' name='btnDetalle' id='btnDetalle' value='" . $tupla["idPelicula"] . "'>" . $tupla["titulo"] . "</button></td>";
     echo "<td><img class='normal' src='img/" . $tupla["caratula"] . "' alt='Caratula' name='caratula' title='Carátula'></td>";
-    echo "<td><button class='enlace' type='submit'  name='borrarPeli' value='" . $tupla["idPelicula"] . "'>Borrar</button>
+    echo "<td><button class='enlace' type='submit'  name='borrarPeli' id='borrarPeli' value='" . $tupla["idPelicula"] . "'>Borrar</button>
     -
     <button class='enlace' type='submit'  name='editarPeli' value='" . $tupla["idPelicula"] . "'>Editar</button></td>";
     echo "</tr>";

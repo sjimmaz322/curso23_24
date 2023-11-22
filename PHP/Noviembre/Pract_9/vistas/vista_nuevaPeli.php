@@ -55,13 +55,13 @@ if (isset($_POST["btnAgregar"]) && $error_tema) {
 //
 echo "</p>";
 echo "<p>";
-echo "<label for='pic'>Carátula (Max. 500KB)</label><input name='pic' id='pic' type='file' accept='image/png'>";
+echo "<label for='pic'>Carátula (Max. 500KB)</label><input name='pic' id='pic' type='file' accept='image/*'>";
 if (isset($_POST["btnAgregar"]) && $error_agregar) {
     if ($_FILES["pic"]["name"] != "") {
-        if ($_FILES["pic"]["size"] > 500 * 1240) {
+        if ($_FILES["pic"]["size"] > 1024 * 1024) {
             echo "<span class='error'> * El archivo es demasiado grande. Tam. máximo 500 * </span>";
-        } else if ($_FILES["pic"]["type"] != "image/png") {
-            echo "<span class='error'> * El archivo seleccionado no es una imagen con el formato .PNG * </span>";
+        } else if (!in_array($formato, $formatos_validos)) {
+            echo "<span class='error'> * El archivo seleccionado no es una imagen con un formato válido * </span>";
         } else {
             echo "<span class='error'> * No se ha podido subir el archivo al servidor * </span>";
         }
@@ -75,7 +75,24 @@ echo "<p>
 </p>";
 echo "</form>";
 if (isset($_POST["btnAgregar"]) && !$error_agregar) {
-    $_SESSION["mensaje"] = "Película agregada correctamente";
-    header("Location:index.php");
+    //
+    $consulta = "SELECT MAX(idPelicula) AS max_id FROM peliculas";
+    $resultado = mysqli_query($conexion, $consulta);
+    $tupla = mysqli_fetch_assoc($resultado);
+    $last_index = $tupla["max_id"] + 1;
+    //
+    $nombre_foto = ($_FILES["pic"]["name"] == "") ? "no_imagen.jpg" : "img_" . $last_index . ".png";
+    move_uploaded_file($_FILES["pic"]["tmp_name"], "img/" . $nombre_foto);
+    //        
+    $insersion = "INSERT INTO peliculas (titulo, director, sinopsis, tematica, caratula) VALUES ('{$_POST['nombrePeli']}', '{$_POST['directorPeli']}', '{$_POST['trama']}', '{$_POST['tema']}', '$nombre_foto')";
+    $resultado = mysqli_query($conexion, $insersion);
+    //
+    if($_FILES["pic"]["name"]!=""){
+    $_SESSION["mensaje"]="Película añadida a la base de datos con éxito";
+    }else{
+        $_SESSION["mensaje"]="Película añadida a la base de datos con éxito, pero con carátula por defecto";
+    }
+    header("Location: index.php");
+    mysqli_close($conexion);
     exit();
 }

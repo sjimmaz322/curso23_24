@@ -6,5 +6,15 @@ if (isset($_POST["btnAgregar"])) {
     $error_trama = $_POST["trama"] == "";
     $error_tema = $_POST["tema"] == "" || strlen($_POST["tema"]) > 15;
     //
-    $error_agregar = $error_nombre || $error_director || $error_trama || $error_tema;
+    $formato = $_FILES["pic"]["type"];
+    $formatos_validos = array("image/jpeg", "image/png", "image/gif", "image/jpg");
+    //
+    $error_caratula = $_FILES["pic"]["error"] || $_FILES["pic"]["size"] > 1024 * 1024 || !in_array($formato, $formatos_validos);
+    //
+    if ($_FILES["pic"]["name"] != "") {
+        $error_agregar = $error_nombre || $error_director || $error_trama || $error_tema || $error_caratula;
+    }else{
+        $error_agregar = $error_nombre || $error_director || $error_trama || $error_tema;
+    }
 }
+
