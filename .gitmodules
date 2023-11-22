@@ -1,3 +1,18 @@
 [submodule "DG"]
 	path = DG
 	url = ../Proyectos.git
+[submodule "JS/react/botones"]
+	path = JS/react/botones
+	url = /opt/lampp/htdocs/Proyectos/2DAW2324/JS/react/botones
+[submodule "JS/react/conversor"]
+	path = JS/react/conversor
+	url = /opt/lampp/htdocs/Proyectos/2DAW2324/JS/react/conversor
+[submodule "JS/react/tresenlinea/my-app"]
+	path = JS/react/tresenlinea/my-app
+	url = /opt/lampp/htdocs/Proyectos/2DAW2324/JS/react/tresenlinea/my-app
+[submodule "JS/react/plantilla"]
+	path = JS/react/plantilla
+	url = /opt/lampp/htdocs/Proyectos/2DAW2324/JS/react/plantilla
+[submodule "JS/react/semaforo"]
+	path = JS/react/semaforo
+	url = /opt/lampp/htdocs/Proyectos/2DAW2324/JS/react/semaforo
