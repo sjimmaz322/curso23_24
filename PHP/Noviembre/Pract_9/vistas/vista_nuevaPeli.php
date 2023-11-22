@@ -1,6 +1,29 @@
 <?php
 echo "<h2>Agreguemos una nueva película. </h2>";
-
+//
+if (isset($_POST["btnAgregar"]) && !$error_agregar) {
+    //
+    $consulta = "SELECT MAX(idPelicula) AS max_id FROM peliculas";
+    $resultado = mysqli_query($conexion, $consulta);
+    $tupla = mysqli_fetch_assoc($resultado);
+    $last_index = $tupla["max_id"] + 1;
+    //
+    $nombre_foto = ($_FILES["pic"]["name"] == "") ? "no_img.jpg" : "img_" . $last_index . ".png";
+    move_uploaded_file($_FILES["pic"]["tmp_name"], "img/" . $nombre_foto);
+    //        
+    $insersion = "INSERT INTO peliculas (titulo, director, sinopsis, tematica, caratula) VALUES ('{$_POST['nombrePeli']}', '{$_POST['directorPeli']}', '{$_POST['trama']}', '{$_POST['tema']}', '$nombre_foto')";
+    $resultado = mysqli_query($conexion, $insersion);
+    //
+    if ($_FILES["pic"]["name"] != "") {
+        $_SESSION["mensaje"] = "Película añadida a la base de datos con éxito";
+    } else {
+        $_SESSION["mensaje"] = "Película añadida a la base de datos con éxito, pero con carátula por defecto";
+    }
+    mysqli_close($conexion);
+    header("Location:index.php");
+    exit();
+}
+//
 echo "<form action='index.php' method='post' enctype='multipart/form-data'>";
 //
 echo "<p>";
@@ -74,25 +97,4 @@ echo "<p>
         <button type='submit' name='volver' id='volver' >Volver</button>
 </p>";
 echo "</form>";
-if (isset($_POST["btnAgregar"]) && !$error_agregar) {
-    //
-    $consulta = "SELECT MAX(idPelicula) AS max_id FROM peliculas";
-    $resultado = mysqli_query($conexion, $consulta);
-    $tupla = mysqli_fetch_assoc($resultado);
-    $last_index = $tupla["max_id"] + 1;
-    //
-    $nombre_foto = ($_FILES["pic"]["name"] == "") ? "no_imagen.jpg" : "img_" . $last_index . ".png";
-    move_uploaded_file($_FILES["pic"]["tmp_name"], "img/" . $nombre_foto);
-    //        
-    $insersion = "INSERT INTO peliculas (titulo, director, sinopsis, tematica, caratula) VALUES ('{$_POST['nombrePeli']}', '{$_POST['directorPeli']}', '{$_POST['trama']}', '{$_POST['tema']}', '$nombre_foto')";
-    $resultado = mysqli_query($conexion, $insersion);
-    //
-    if($_FILES["pic"]["name"]!=""){
-    $_SESSION["mensaje"]="Película añadida a la base de datos con éxito";
-    }else{
-        $_SESSION["mensaje"]="Película añadida a la base de datos con éxito, pero con carátula por defecto";
-    }
-    header("Location: index.php");
-    mysqli_close($conexion);
-    exit();
-}
+

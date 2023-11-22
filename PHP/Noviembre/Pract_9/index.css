@@ -16,8 +16,7 @@ th {
 }
 
 .normal {
-    width: auto;
-    max-height: 150px;
+    width: 50px;
 }
 
 .enlace {
@@ -33,7 +32,7 @@ th {
     font-weight: bold;
 }
 
-.mensaje {
+.mensaje {  
     color: lightseagreen;
     font-weight: bold;
 
@@ -41,5 +40,5 @@ th {
 
 .profile {
     width: auto;
-    height: 306;
+    max-height: 256px;
 }

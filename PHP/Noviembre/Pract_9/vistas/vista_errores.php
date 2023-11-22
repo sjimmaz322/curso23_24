@@ -13,8 +13,7 @@ if (isset($_POST["btnAgregar"])) {
     //
     if ($_FILES["pic"]["name"] != "") {
         $error_agregar = $error_nombre || $error_director || $error_trama || $error_tema || $error_caratula;
-    }else{
+    } else {
         $error_agregar = $error_nombre || $error_director || $error_trama || $error_tema;
     }
 }
-

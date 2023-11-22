@@ -41,6 +41,13 @@ require("vistas/vista_confirmacion.php");
         require("vistas/vista_borrado.php");
     }
     //
+    if(isset($_POST["editarPeli"])||isset($_POST["edit"])){
+        require("vistas/vista_editar.php");
+    }
+    //
+    if(isset($_POST["borrarCaratula"])){
+        require("vistas/vista_borrar_caratula.php");
+    }
     ?>
 </body>
 
