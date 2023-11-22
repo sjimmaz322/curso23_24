@@ -33,6 +33,7 @@ if (mysqli_num_rows($resultado) > 0) {
     echo "</tr>";
     echo "</table>";
     echo "</p>";
+    echo "<form action='index.php' method='post'><button type='submit'>Volver</button></form>";
 } else {
     echo "<p>No se ha encontrado la película con esa ID en la base de datos</p>";
 }
