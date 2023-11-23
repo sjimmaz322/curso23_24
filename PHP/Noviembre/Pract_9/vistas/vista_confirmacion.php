@@ -5,6 +5,7 @@ if (isset($_POST["borrarDef"])) {
         $consulta = "select * from peliculas where idPelicula=" . $_SESSION["id"];
         $datos = mysqli_query($conexion, $consulta);
     } catch (Exception $e) {
+        session_destroy();
         mysqli_close($conexion);
         die("<p>No se ha podido realizar la consulta: " . $e->getMessage() . "</p></body></html>");
     }
@@ -33,6 +34,7 @@ if (isset($_POST["confBorrar"])) {
         $consulta = "select * from peliculas where idPelicula=" . $_SESSION["id"];
         $datos = mysqli_query($conexion, $consulta);
     } catch (Exception $e) {
+        session_destroy();
         mysqli_close($conexion);
         die("<p>No se ha podido realizar la consulta: " . $e->getMessage() . "</p></body></html>");
     }
@@ -56,6 +58,7 @@ if(isset($_POST["edit"])){
         $consulta = "select * from peliculas where idPelicula=" . $_SESSION["id"];
         $datos = mysqli_query($conexion, $consulta);
     } catch (Exception $e) {
+        session_destroy();
         mysqli_close($conexion);
         die("<p>No se ha podido realizar la consulta: " . $e->getMessage() . "</p></body></html>");
     }

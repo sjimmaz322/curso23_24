@@ -9,6 +9,7 @@ try {
         $resultado = mysqli_query($conexion, $consulta);
     }
 } catch (Exception $e) {
+    session_destroy();
     mysqli_close($conexion);
     die(error_page("Error de Conexión", "<h1>Error de conexión</h1><p>No he podido conectarse a la base de batos: " . $e->getMessage() . "</p>"));
 }
