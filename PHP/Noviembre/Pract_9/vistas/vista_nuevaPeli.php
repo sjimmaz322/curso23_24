@@ -78,7 +78,7 @@ if (isset($_POST["btnAgregar"]) && $error_tema) {
 //
 echo "</p>";
 echo "<p>";
-echo "<label for='pic'>Carátula (Max. 500KB)</label><input name='pic' id='pic' type='file' accept='image/*'>";
+echo "<label for='pic'>Carátula (Max. 1024KB)</label><input name='pic' id='pic' type='file' accept='image/*'>";
 if (isset($_POST["btnAgregar"]) && $error_agregar) {
     if ($_FILES["pic"]["name"] != "") {
         if ($_FILES["pic"]["size"] > 1024 * 1024) {

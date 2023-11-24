@@ -42,7 +42,7 @@ require("vistas/vista_confirmacion.php");
         require("vistas/vista_borrado.php");
     }
     //
-    if (isset($_POST["editarPeli"]) || isset($_POST["edit"])) {
+    if (isset($_POST["editarPeli"])) {
         require("vistas/vista_editar.php");
     }
     //

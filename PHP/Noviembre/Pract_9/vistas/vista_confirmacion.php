@@ -53,13 +53,22 @@ if (isset($_POST["confBorrar"])) {
     mysqli_close($conexion);
     exit();
 }
-if(isset($_POST["edit"])){
-    try {
-        $consulta = "select * from peliculas where idPelicula=" . $_SESSION["id"];
-        $datos = mysqli_query($conexion, $consulta);
-    } catch (Exception $e) {
-        session_destroy();
-        mysqli_close($conexion);
-        die("<p>No se ha podido realizar la consulta: " . $e->getMessage() . "</p></body></html>");
+if (isset($_POST["edit"])) {
+    $newName = $_POST["title"];
+    $newDire = $_POST["dire"];
+    $newGenero = $_POST["genero"];
+    $newSinopsis = $_POST["sinop"];
+    //
+    if ($_FILES["nuevaCar"]["name"] != "") {
+        $nombre_foto = "img_" . $_SESSION["id"] . ".png";
+        move_uploaded_file($_FILES["nuevaCar"]["tmp_name"], "img/" . $nombre_foto);
     }
+    //
+    $orden_editado = "UPDATE peliculas SET titulo='" . $newName . "',director='" . $newDire . "',sinopsis='" . $newSinopsis . "',tematica='" . $newGenero . "',caratula='" . "img_" . $_SESSION["id"] . ".png" . "' WHERE idPelicula=" . $_SESSION['id'];
+    $resultado = mysqli_query($conexion, $orden_editado);
+    //
+    $_SESSION["mensaje"] = "Película editada satisfactoriamente de la base de datos";
+    header("Location: index.php");
+    mysqli_close($conexion);
+    exit();
 }
