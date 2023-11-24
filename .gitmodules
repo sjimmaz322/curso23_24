@@ -16,3 +16,9 @@
 [submodule "JS/react/semaforo"]
 	path = JS/react/semaforo
 	url = /opt/lampp/htdocs/Proyectos/2DAW2324/JS/react/semaforo
+[submodule "JS/React-js/ExamenReact1A"]
+	path = JS/React-js/ExamenReact1A
+	url = /opt/lampp/htdocs/Proyectos/2DAW2324/JS/React-js/ExamenReact1A
+[submodule "JS/React-js/plantilla"]
+	path = JS/React-js/plantilla
+	url = /opt/lampp/htdocs/Proyectos/2DAW2324/JS/React-js/plantilla
