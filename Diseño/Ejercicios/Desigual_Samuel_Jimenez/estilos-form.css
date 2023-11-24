@@ -1,0 +1,217 @@
+* {
+    box-sizing: border-box;
+}
+
+header>div#cabecera {
+    display: flex;
+    flex-basis: 100%;
+    flex-flow: row;
+    flex-wrap: nowrap;
+
+}
+
+header>div#cabecera>nav#bloque-iconos {
+    flex-basis: 15%;
+}
+
+header>div#cabecera>picture {
+    flex-basis: 85%;
+
+}
+
+header>div#cabecera>picture>img {
+    height: 4rem;
+    width: auto;
+}
+
+#bloque-iconos>ul>li {
+    display: flex;
+    flex: 1 1 15%;
+
+}
+
+header>div#cabecera>nav#bloque-iconos>ul {
+    list-style: none;
+    display: flex;
+    flex-flow: row;
+
+    justify-content: space-between;
+}
+
+header>div#cabecera>nav#bloque-iconos>ul>li>a {
+    text-decoration: none;
+    color: black;
+    padding: 0 1rem;
+
+}
+
+header>div#cabecera>nav#bloque-iconos>ul>li>a>i {
+    font-size: 2rem;
+    padding: 0 1rem;
+
+
+}
+
+header>nav#menu-principal {
+    display: flex;
+    background-color: black;
+    color: white;
+    justify-content: center;
+}
+
+header>nav#menu-principal:hover {
+    display: flex;
+    background-color: black;
+    color: white;
+    justify-content: center;
+
+}
+
+header>nav#menu-principal>ul>li {
+    display: none;
+}
+
+header>nav#menu-principal:hover>ul>li {
+    display: block;
+}
+
+#hamburguesa {
+    display: flex;
+    flex-flow: column;
+}
+
+#hamburguesa>span {
+    text-align: center;
+}
+
+#menu {
+    position: absolute;
+    top: 5.05rem;
+    left: 0.5rem;
+    background-color: black;
+
+}
+
+#menu>li>a {
+    text-decoration: none;
+    color: white;
+}
+
+#menu>li>ul {
+    list-style: none;
+}
+
+#menu>li>ul>li {
+    display: none;
+}
+
+#menu>li:hover>ul>li {
+    display: block;
+}
+
+#menu>li>ul>li>a {
+    color: white;
+    text-decoration: none;
+}
+
+main>section>h2 {
+    text-align: center;
+}
+
+main>section>form {
+    display: flex;
+    flex-flow: column;
+}
+
+main>section>form>label {
+    display: none;
+    align-self: center;
+    width: 66%;
+    flex-wrap: nowrap;
+}
+
+main>section>form>input {
+    margin-bottom: 0.5rem;
+    align-self: center;
+    width: 66%;
+    flex-wrap: nowrap;
+}
+
+main>section>form>input[name="enviar"] {
+    margin-bottom: 0.5rem;
+    align-self: center;
+    width: 66%;
+    flex-wrap: nowrap;
+    color: white;
+    background-color: black;
+}
+
+main>section>form>input:focus {
+    margin-bottom: 0.5rem;
+    align-self: center;
+    width: 66%;
+    flex-wrap: nowrap;
+    background-color: black;
+    border: 5px solid grey;
+}
+
+main>section>form>select {
+    align-self: center;
+    width: 66%;
+    flex-wrap: nowrap;
+    margin-bottom: 0.5rem;
+}
+
+main>section>form>span {
+    margin-bottom: 0.5rem;
+    align-self: center;
+    width: 66%;
+    flex-wrap: nowrap;
+}
+
+main>section>form>textarea {
+    margin-bottom: 0.5rem;
+    align-self: center;
+    width: 66%;
+    flex-wrap: nowrap;
+}
+
+
+
+footer {
+    display: none;
+}
+
+@media(min-width: 720px) {
+    header>nav#menu-principal {
+        display: flex;
+        background-color: black;
+        color: white;
+        justify-content: left;
+        
+    }
+    header>nav#menu-principal:hover {
+        display: flex;
+        background-color: black;
+        color: white;
+        justify-content: left;
+        
+    }
+    #hamburguesa {
+        display: flex;
+        flex-flow: row;
+        
+    }
+    
+    #hamburguesa>span {
+        align-self: center;
+        margin:0 0.5rem;
+        text-align: left;
+    }
+    main>section>form>label {
+        display:block;
+        align-self: center;
+        width: 66%;
+        flex-wrap: nowrap;
+    }
+}
