@@ -1,0 +1,84 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+
+    font-family: 'Roboto', 'sans-serif';
+    font-weight: bold;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin: 0 auto;
+    width: 90%;
+    border: 1px solid black;
+}
+
+form input {
+    border: none;
+    border-bottom: 1px solid grey;
+    margin: 5px;
+
+}
+
+form>div>input {
+    border: none;
+    border-bottom: 1px solid grey;
+    margin: 5px;
+
+}
+
+
+form>input::placeholder,
+select {
+    font-weight: 425;
+    color: black;
+
+}
+
+button {
+    border-radius: 20rem;
+    background-color: black;
+    padding: 15px;
+    color: burlywood;
+    width: 200px;
+}
+
+a {
+
+    color: black;
+
+}
+
+@media(min-width:720px) {
+    body{background-color: lightskyblue;}
+    form{
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    form>div#subContenedor{
+        width:100%;
+    }
+    form>div#nacimiento{
+        flex:100%;
+    }
+    form>div#nacimiento>input{
+        width:99%;
+    }
+    form input{
+        flex:45%;
+    }
+    html body div#contenedor form select#pais{
+        width:50%;
+    }
+    html body div#contenedor form select#provincia{
+        width:50%;
+    }
+    html body div#contenedor form a{
+        width:100%;
+    }
+}

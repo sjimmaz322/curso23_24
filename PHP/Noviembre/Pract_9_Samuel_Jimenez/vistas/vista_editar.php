@@ -17,7 +17,7 @@ try {
 $peli = mysqli_fetch_array($resultado);
 $_SESSION["id"]= $peli["idPelicula"];
 echo "<h2>Editar la película: " . $peli["titulo"] . "</h2>";
-echo "<form action='index.php' method='post'>";
+echo "<form action='index.php' method='post' enctype='multipart/form-data'>";
 echo "<table>";
 echo "<tr><th>Datos</th><th>Carátula</th></tr>";
 echo "<tr><td>";
@@ -41,7 +41,7 @@ echo "<tr><td>";
 echo "<label for='sinop'>Sinopsis de la película</lable><br>";
 echo "<textarea name='sinop' id='sinop' rows='10' cols='50'>" . $peli["sinopsis"] . "</textarea>";
 echo "</td></tr>";
-echo "<tr><td colspan='2' >Cambiar carátula de la película: <input type='file' name='nuevaCar' id='nuevaCar' accept='image/*'></td></tr>";
+echo "<tr><td colspan='2' >Cambiar carátula de la película: <input name='pic2' id='pic2' type='file' accept='image/*'></td></tr>";
 echo "<tr><td colspan='2' >";
 echo "<button type='submit' name='edit' id='edit' value='".$_SESSION["id"]."'>Editar película</button><button type='submit'>Volver</button>";
 echo "</td></tr>";

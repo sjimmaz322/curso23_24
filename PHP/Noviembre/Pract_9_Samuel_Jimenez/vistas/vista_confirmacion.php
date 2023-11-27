@@ -59,9 +59,10 @@ if (isset($_POST["edit"])) {
     $newGenero = $_POST["genero"];
     $newSinopsis = $_POST["sinop"];
     //
-    if ($_FILES["nuevaCar"]["name"] != "") {
-        $nombre_foto = "img_" . $_SESSION["id"] . ".png";
-        move_uploaded_file($_FILES["nuevaCar"]["tmp_name"], "img/" . $nombre_foto);
+    if ($_FILES["pic2"]["name"] != "") {
+        unlink("img/img_" . $_SESSION["id"] . ".png");
+        $nombre_foto = ($_FILES["pic2"]["name"] == "") ? "no_img.jpg" : "img_" . $_SESSION["id"] . ".png";
+        move_uploaded_file($_FILES["pic2"]["tmp_name"], "img/" . $nombre_foto);
     }
     //
     $orden_editado = "UPDATE peliculas SET titulo='" . $newName . "',director='" . $newDire . "',sinopsis='" . $newSinopsis . "',tematica='" . $newGenero . "',caratula='" . "img_" . $_SESSION["id"] . ".png" . "' WHERE idPelicula=" . $_SESSION['id'];
