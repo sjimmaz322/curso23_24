@@ -11,7 +11,7 @@ if (mysqli_num_rows($resultado) > 0) {
     echo "<label for='alumno'>Seleccione un Alumno:</label>";
     echo " <select name='alumno' id='alumno'>";
     while ($tupla = mysqli_fetch_assoc($resultado)) {
-        if (isset($_POST["alumno"]) && $_POST["alumno"] == $tupla["cod_alu"]) {
+        if (isset($_POST["alumno"]) && $_POST["alumno"] === $tupla["cod_alu"]) {
             echo "<option value='" . $tupla["cod_alu"] . "' selected>" . $tupla["nombre"] . "</option>";
             $nombre_alumno = $tupla["nombre"];
         } else {
@@ -19,8 +19,10 @@ if (mysqli_num_rows($resultado) > 0) {
         }
     }
     echo "</select>";
-    echo "<button type='input' name='btnVer' id='btnVer'>Ver notas</button>";
+    echo "<button type='input' name='btnVer' id='btnVer'>Ver Notas</button>";
     echo "</form>";
 } else {
     echo "<p>En estos momentos no tenemos ningún alumno en la BD.</p>";
+    mysqli_free_result($resultado);
+    mysqli_close($conexion);
 }
