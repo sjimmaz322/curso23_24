@@ -22,3 +22,9 @@
 [submodule "JS/React-js/plantilla"]
 	path = JS/React-js/plantilla
 	url = /opt/lampp/htdocs/Proyectos/2DAW2324/JS/React-js/plantilla
+[submodule "JS/React-js/sino"]
+	path = JS/React-js/sino
+	url = /opt/lampp/htdocs/Proyectos/2DAW2324/JS/React-js/sino
+[submodule "JS/React-js/flashcard"]
+	path = JS/React-js/flashcard
+	url = /opt/lampp/htdocs/Proyectos/2DAW2324/JS/React-js/flashcard
