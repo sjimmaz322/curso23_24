@@ -28,3 +28,6 @@
 [submodule "JS/React-js/flashcard"]
 	path = JS/React-js/flashcard
 	url = /opt/lampp/htdocs/Proyectos/2DAW2324/JS/React-js/flashcard
+[submodule "JS/React-js/laberinto"]
+	path = JS/React-js/laberinto
+	url = /opt/lampp/htdocs/Proyectos/2DAW2324/JS/React-js/laberinto
