@@ -1,0 +1,47 @@
+* {
+    background-color: lightgrey;
+    margin: 0;
+    padding: 0;
+}
+
+#hamburguer-icon {
+    display: none;
+}
+
+label {
+    display: flex;
+    height: 3rem;
+    width: 3rem;
+    background-color: aliceblue;
+    margin: 1rem 1rem;
+    flex-direction: column;
+    align-items: center;
+}
+
+label:hover {
+    filter: invert(1)
+}
+
+label>span.hamburguer-line {
+    
+    margin-top: 0.56rem;
+    width: 2rem;
+    height: .25rem;
+    background: black;
+}
+
+label>span.hamburguer-line:nth-child(2) {
+   
+    width: 2rem;
+    height: .25rem;
+    background: black;
+   
+}
+
+label>span.hamburguer-line:nth-child(3) {
+    
+    width: 2rem;
+    height: .25rem;
+    background: black;
+   
+}

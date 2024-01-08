@@ -45,7 +45,7 @@ if (isset($_POST["btnGuardar"]) && $error_dni) {
     if ($_POST["nuevoDni"] == "") {
         echo "<span class='error'> * El campo es obligatorio *</span>";
     } else if (yaEstaba("usuarios", "dni", $_POST["nuevoDni"])) {
-        echo  "<span class='error'> * Ya hay un registro con ese nombre de usuario *</span>";
+        echo  "<span class='error'> * Ya hay un registro con ese DNI *</span>";
    /* } else if (letraCorrectaDni($_POST["nuevoDni"])) {
         echo  "<span class='error'> * La letra no corresponde a ese número de DNI *</span>";*/
     } else {
