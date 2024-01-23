@@ -9,6 +9,14 @@
 
 <body>
     <?php
+
+try {
+    $conexion = new PDO("mysql:host=" . SERVIDOR_BD . ";dbname=" . NOMBRE_BD, USUARIO_BD, CLAVE_BD, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
+} catch (PDOException $e) {
+
+    die("<p>No he podido conectarse a la base de batos: " . $e->getMessage() . "</p></body></html>");
+};
+/*
     try {
         $conection = mysqli_connect("localhost", "jose", "josefa", "bd_foro");
     } catch (Exception $e) {
@@ -21,7 +29,7 @@
         mysqli_close($conection);
         die($e->getMessage() . "</body></html>");
     }
-
+*/
 
     echo "<table>";
     echo "<tr><th>Nombre</th><th>Editar</th><th>Borrar</th></tr>";
