@@ -28,3 +28,12 @@
 [submodule "JS/React-js/laberinto"]
 	path = JS/React-js/laberinto
 	url = /opt/lampp/htdocs/Proyectos/2DAW2324/JS/React-js/laberinto
+[submodule "JS/React-js/damas"]
+	path = JS/React-js/damas
+	url = /opt/lampp/htdocs/Proyectos/2DAW2324/JS/React-js/damas
+[submodule "JS/React-js/ej4"]
+	path = JS/React-js/ej4
+	url = /opt/lampp/htdocs/Proyectos/2DAW2324/JS/React-js/ej4
+[submodule "JS/React-js/hooks"]
+	path = JS/React-js/hooks
+	url = /opt/lampp/htdocs/Proyectos/2DAW2324/JS/React-js/hooks
